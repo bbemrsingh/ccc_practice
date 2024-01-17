@@ -40,7 +40,24 @@ echo "Statement without using function: $x <br><br>";
 echo "Statement when using function: ", strtoupper($x);
 */
 
+/*
 //trim($string):removes whitespace or other predefined characters from the beginning and end of a string.
-$x = "marvel vs dc debate is endless"; 
-echo trim( $x );
+$x = "  marvel vs dc debate is endless <br>\n"; 
+echo "before trim function: $x";
+echo trim($x);
+*/
+/*
+//implode($glue, $pieces): Joins array elements with a string.
+$arr = array("marvel","vs","dc","debate","is","phase","1");
+echo implode(" ", $arr);
+*/
+
+/*
+// explode($delimiter, $string): splits a string into an array by a specified delimiter.
+$x = "marvel vs dc debate is on its peak";
+var_dump (explode(" ", $x)); //it prints string postion, content & length in array
+echo"<br>";
+print_r (explode(" ", $x)); // it prints only positions & content of string in array
+
+*/
 ?>
