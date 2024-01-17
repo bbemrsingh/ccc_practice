@@ -58,6 +58,22 @@ $x = "marvel vs dc debate is on its peak";
 var_dump (explode(" ", $x)); //it prints string postion, content & length in array
 echo"<br>";
 print_r (explode(" ", $x)); // it prints only positions & content of string in array
-
 */
+
+/*
+// htmlspecialchars($string): converts special characters to HTML entities.
+$str = "This is <h1>heading</h1> text <br>";
+echo $str;
+echo "on using htmlspecialchars function html tags will be treated as text : ",htmlspecialchars($str);
+*/
+
+//htmlentities($string): converts all applicable characters to HTML entities.
+//this function is similar to htmlspecialchars & htmlspecialchars is used when there is no need to convert all characters which have their HTML equivalents into simple text.
+echo "<h1>this is heading</h1>";
+echo htmlentities("<h1>this is heading</h1>");
+
+//nl2br($string):inserts HTML line breaks before all newlines in a string
+
+
+
 ?>
