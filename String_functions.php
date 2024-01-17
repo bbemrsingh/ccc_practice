@@ -1,4 +1,3 @@
-
 <?php
 /*
 // strlen($string): returns the length of the length of the string
