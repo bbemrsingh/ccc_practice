@@ -67,13 +67,144 @@ echo $str;
 echo "on using htmlspecialchars function html tags will be treated as text : ",htmlspecialchars($str);
 */
 
+/*
 //htmlentities($string): converts all applicable characters to HTML entities.
-//this function is similar to htmlspecialchars & htmlspecialchars is used when there is no need to convert all characters which have their HTML equivalents into simple text.
+//this function is similar to htmlspecialchars but htmlspecialchars is used when there is no need to convert all characters which have their HTML equivalents into simple text.
 echo "<h1>this is heading</h1>";
 echo htmlentities("<h1>this is heading</h1>");
+*/
 
+/*
 //nl2br($string):inserts HTML line breaks before all newlines in a string
+$y = "php is a widely-used open source. \n & general-purpose scripting language";
+echo nl2br("$y");
+*/
+
+/*
+//str_repeat($string, $multiplier): repeats a string a specified number of times.
+$y = "php is a widely-used open source scripting language\n ";
+echo str_repeat(nl2br("$y"),5);
+*/
+
+/*
+//strrev($string): reverses a string
+$str = "php is scripting language";
+$y= "1 2 3 4 5 6 7 8 9";
+echo strrev("$str");
+echo nl2br(" \n ");
+echo strrev($y);
+*/
+
+/*
+//str_shuffle($string) randomly shuffles all characters in a string & every time you refresh shuffled output is different
+$str = "php is scripting language";
+echo str_shuffle($str);
+*/
+/*
+// str_word_count($string) Returns the number of words in a string.
+$z = "marvel vs dc debate is on its peak";
+echo str_word_count($z);
+*/
+
+/*
+// substr_replace($string, $replacement, $start, $length) Replaces a portion of a string with another string.
+$w = "marvel vs dc debate is on its peak";
+$v = "over";
+echo substr_replace($w, $v,23,);;
+*/
+
+/*
+// str_pad($string, $length, $pad_string, $pad_type) pads a string to a certain length with another string.
+$str = "marvel vs dc debate is on its peak";
+echo str_pad($str,50,".:",STR_PAD_BOTH);
+*/
+
+/*
+//strcmp($string1, $string2) Compares (two string content && their lengths)  & its case sensitive
+$x = "Hello world!";
+$y = "Hello world!"; 
+
+if (strcmp($x,$y) == 0) {
+    echo "both the strings are same";
+} else if (strcmp($x,$y) < 0) {
+    echo "string 1 is less than string 2";
+} else if (strcmp($x,$y) > 0) {
+    echo "string 2 is less than string 1";
+}
+*/
+
+/*
+// strcoll($string1, $string2) locale based string comparison.
+//this comparison is case sensitive, and unlike strcmp () this function is not binary safe. strcoll () uses the current locale for doing the comparisons.
+// If the current locale is C or POSIX, this function is equivalent to strcmp ().
+//A "Locale" is an identifier used to get language, culture, or regionally-specific behavior from an API. 
+$a = "Hello orld!";
+$b = "Hello world!"; 
+
+if(strcoll($a,$b) == 0) {
+    echo "both strings are equal";
+}
+else {
+    echo "strings are not equal";
+}
+*/
+
+/*
+//strcspn($string, $mask, $start, $length) returns length (including whitespaces) found in a string before a character is found.
+//$length = max length upto which searching will be done in given string.
+$x = "chess is fun";
+echo "No of character before f = ",strcspn($x,"zf",0,11);
+*/
+
+/*
+//stristr($haystack, $needle, $before_needle) search for the first occurrence of a string inside another string (Not case-sensitive)
+//before_needle : its Optional. its A boolean value whose default is "false". If set to "true", it returns the part of the string before the first occurrence of the search parameter.
+$x = "php is scripting language";
+echo stristr($x,"SCRIPTING",true);
+echo "<br>";
+echo stristr($x,"SCRIPTING");
+*/
+
+/*
+// strpbrk($string, $char_list)  searches a string for any of a set of characters( eg searching "oe" in string "hello world" returns: ello world) & return the rest of the string from where it found the first occurrence of the specified characters:.
+//it is case sensitive
+$x = "php is scripting language";
+echo strpbrk($x,"t");
+*/
+
+/*
+//strstr($haystack, $needle, $before_needle) Finds the first occurrence of a string
+//This function is case-sensitive. For a case-insensitive search, use stristr() function
+$x = "php is Sripting language";
+echo strstr($x,"S",true);
+echo "<br><br>";
+echo strstr($x,"l");
+*/
 
 
+/*
+only difference between stritr & strstr
+stristr - Not case sensitive
+strstr - Case sensitive
+*/
+
+/*
+//strtr($string, $from, $to) Translates characters or replaces substrings.
+$x = "Hulk is the best";
+echo "before using function : $x <br>";
+echo "after using function : ",strtr($x,"best","biggest");
+echo "<br><br>";
+*/
+
+/*
+//ucfirst($string) converts the first character of a string to uppercase.
+$x = "visionary is the one who has a vision";
+echo ucfirst($x);
+echo "<br><br>";
+
+// ucwords($string) converts the first character of each word in a string to uppercase.
+$y = "visionary is the one who has a vision";
+echo ucwords($y);
+*/
 
 ?>
