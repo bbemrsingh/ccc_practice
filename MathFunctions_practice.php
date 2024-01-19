@@ -29,7 +29,7 @@
 // 4. Number Formatting
 // number_format($number, $decimals, $decimal_point, $thousands_separator): Formats a number with grouped thousands and a specified number of decimals.
  echo number_format(900000000,1,",",".")."<br>" ;
- echo number_format(999s000000,1,".",",")."<br>" ;
+ echo number_format(999000000,1,".",",")."<br>" ;
 
 
 ?>
