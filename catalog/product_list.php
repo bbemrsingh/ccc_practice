@@ -1,18 +1,14 @@
 <?php 
     
-    include("form_connect.php");
-    // include("sql_function.php");
     
+    include("sql/functions.php");
+    include("sql/connections.php");
 
     $read = read_data('ccc_product',);
     // echo $read;
     $sql = "$read ORDER BY product_id DESC LIMIT 10";
     // echo $sql;
     $res = mysqli_query($conn, $sql);    
-    // return type object, that specifies field_count, num_rows, current_field, type 
-    // print_r($result);
-    // $rows = mysqli_num_rows($result);
-    // echo $rows; // returns 5(int) --> num of records in your result
 
     echo '<!doctype html>
         <html lang="en">
