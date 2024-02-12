@@ -3,14 +3,14 @@ class Core_Model_Request {
 	protected $_moduleName;
 	protected $_controllerName;
 	protected $_actionName;
-	public function __construct(){
-
+	public function __construct()
+	{
 		$request = $this->getRequestUri();
-		$uri = explode("/", $request);
-		$this->_moduleName=$uri[0];
-		$this->_controllerName=$uri[1];
-		$this->_actionName=$uri[2];
+		$uri = array_filter(explode("/", $request));
 		print_r($uri);
+		$this->_moduleName		=isset($uri[0]) ? $uri[0] : 'page';
+		$this->_controllerName	=isset($uri[1]) ? $uri[1] : 'index';
+		$this->_actionName		=isset($uri[2]) ? $uri[2] : 'index';
 
 	}
 
@@ -52,7 +52,7 @@ class Core_Model_Request {
 
 	public function getRequestUri(){
 		$uri = $_SERVER['REQUEST_URI'];
-		$uri = str_replace('/mvcProject/app/','', $uri);
+		$uri = str_replace('/internship/mvcProject/','', $uri);
 		return $uri;
 	}
 
@@ -67,7 +67,11 @@ class Core_Model_Request {
 	}
 
 	public function getFullControllerClass(){
-		return ucwords($this->_moduleName."_Controller_".$this->_controllerName, "_");
+		$strClass = $this->_moduleName . '_Controller_' . $this->_controllerName;
+		$strClass = ucwords($strClass,"_");
+		// echo $strClass;
+		return $strClass; // return ucwords($this->_moduleName."_Controller_".$this->_controllerName, "_");
+
 	}
 
 }
