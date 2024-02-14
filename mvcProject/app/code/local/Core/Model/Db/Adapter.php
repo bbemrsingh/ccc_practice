@@ -1,12 +1,24 @@
 <?php 
 
 class Core_Model_Db_Adapter{
-    public $config = []; 
+    public $config = [
+        "host"=> "localhost",
+        "user"=> "root",
+        "password"=> "",
+        "database"=> "ccc_practice"
+    ]; 
     public $connect = null; 
-    public function connect()           
+    public function connect($config)           
     {
-
-    } 
+        if(is_null($this->connect)) {
+            $this->connect = mysqli_connect(
+                $this->config["host"],
+                $this->config["user"],
+                $this->config["password"],
+                $this->config["database"],
+            ); 
+        }
+    }
     public function fetchAll($query) 
     {
 

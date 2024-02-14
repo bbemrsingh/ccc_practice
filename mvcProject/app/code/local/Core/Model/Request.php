@@ -53,6 +53,9 @@ class Core_Model_Request {
 	public function getRequestUri(){
 		$uri = $_SERVER['REQUEST_URI'];
 		$uri = str_replace('/internship/mvcProject/','', $uri);
+		$pos = strpos($uri, '?');
+		if($pos === false) $pos = strlen($uri);
+		$uri = substr($uri, 0, $pos);
 		return $uri;
 	}
 
