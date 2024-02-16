@@ -1,5 +1,7 @@
 <?php
 
+/* The Core_Block_Layout class is responsible for creating and managing child blocks, such as the head,
+header, content, footer, and message blocks, and setting the template for the layout. */
 class Core_Block_Layout extends Core_Block_Template
 {
     public function __construct()

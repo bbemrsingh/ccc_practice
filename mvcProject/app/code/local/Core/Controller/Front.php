@@ -1,5 +1,8 @@
 <?php 
 
+/* The Core_Controller_Front class initializes a request object, retrieves the action name and full
+controller class, and then creates an instance of the controller class and calls the corresponding
+action method. */
 class Core_Controller_Front
 { 
 
@@ -12,7 +15,7 @@ class Core_Controller_Front
         // echo $fullclassName;
         $pageController = new $fullclassName();
         $pageController->{$actionName}();
-
+ 
     }
 
 // $request = new Core_Model_Request();

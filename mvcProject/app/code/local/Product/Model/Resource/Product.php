@@ -1,14 +1,30 @@
 <?php
 
-class Product_Model_Resource_product
+class Product_Model_Resource_Product
 {
     protected $_tableName="";
-    protected $_primeryKey="";
+    protected $_primaryKey="";
 
-    public function init($tableName,$primeryKey)
+    public function init($tableName,$primaryKey)
     {
         $this->_tableName = $tableName;
-        $this->_primeryKey = $primeryKey;
+        $this->_primaryKey = $primaryKey;
+    }
+
+    public function load($id,$column=null)
+    {
+        $sql = "SELECT * FROM {$this->_tableName} WHERE  {$this->_primaryKey} = {$id} LIMIT 1";
+        // echo $sql;
+        return $this->getAdapter()->fetchRow($sql);
+    }
+ 
+    public function getAdapter(){
+        return new Core_Model_Db_Adapter;
+    }
+
+    public function getPrimaryKey() {
+     return $this->_primaryKey; 
+        
     }
     //above part is abstract
     public function __construct()

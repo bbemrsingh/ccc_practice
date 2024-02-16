@@ -1,4 +1,6 @@
 <?php
+/* The Core_Model_Request class is responsible for handling and parsing the request URI to determine
+the module, controller, and action names for a PHP MVC application. */
 class Core_Model_Request {
 	protected $_moduleName;
 	protected $_controllerName;

@@ -1,5 +1,7 @@
 <?php 
 
+/* The class Core_Controller_Front_Action is a PHP class that provides a method to retrieve the layout
+object. */
 class Core_Controller_Front_Action
 {
     protected $_layout = null;
@@ -12,5 +14,3 @@ class Core_Controller_Front_Action
         return $this->_layout;
     }
 }
-
-?>

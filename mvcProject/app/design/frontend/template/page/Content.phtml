@@ -1,11 +1,17 @@
 <?php 
 
+echo $this->getRequest()->getParams('id');
+// The line ` = Mage::getModel('product/product');` is creating an instance of the `product` model in the Magento framework. This model can be used to interact with product data in the database, such as loading specific products or performing CRUD operations on products.
+$productModel = Mage::getModel('product/product')->load(1);
+echo '<pre>';
+// print_r($productModel->load(4));// MODEL --- RESOURCE --- COLLECTION
+print_r($productModel->getId());
+print_r($productModel->getProductName());
+print_r($productModel->getSku());
+print_r($productModel);
 
-$productModel = Mage::getModel('product/product');
-// echo '<pre>';
-// print_r($productModel->load(123));// MODEL --- RESOURCE --- COLLECTION
+
 
 ?>
 
-<h3>Content</h3>
-<?php //echo $this->getRequest()->getParams('id'); ?>
+<h1>Content</h1> 

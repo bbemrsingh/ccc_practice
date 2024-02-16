@@ -1,5 +1,8 @@
 <?php 
 
+/* The below class is a PHP class that serves as an abstract base class for blocks in a web
+application, providing methods for setting and getting templates, managing data, generating URLs,
+and rendering the block. */
 class Core_Block_Abstract
 {
 
@@ -59,5 +62,3 @@ class Core_Block_Abstract
     }
 
 }
-    
-?>
