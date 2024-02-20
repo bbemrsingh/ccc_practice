@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVC Project</title>
+
+     <?php echo $this->getChildHtml('head'); ?>
+
+</head>
+<body>
+
+    <!-- The code you provided is using PHP to echo the output of the `getChildHtml` method on the `` object. -->
+    <div> <?php echo $this->getChildHtml('header');  ?></div>
+    <div> <?php echo $this->getChildHtml('content'); ?></div>
+    <div> <?php echo $this->getChildHtml('message'); ?></div>
+    <div> <?php echo $this->getChildHtml('form'); ?></div>
+    <div> <?php echo $this->getChildHtml('footer');  ?></div>
+    
+    <div> <?php //echo $this->setTemplate ?></div>
+</body>
+</html>
+
+    <!-- <form>
+        <h1>hello</h1>
+        <?php //echo Mage::getModel('core/request')->getParams('pid'); ?> 
+        <input type="text" name="acb" value="">
+    </form> -->

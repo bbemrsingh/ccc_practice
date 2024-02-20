@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVC Project</title>
+
+    <pre> <?php echo $this->getChild('head')->toHtml(); ?>
+
+</head>
+<body>
+    <?php print_r(get_class($this)) ?>
+    <div> <?php echo $this->getChild('header')->toHtml(); ?></div>
+    <div> <?php echo $this->getChild('content')->toHtml(); ?></div>
+    <div> <?php echo $this->getChild('footer')->toHtml(); ?></div>
+    <div> <?php echo $this->getChild('message')->toHtml(); ?></div>
+    <div> <?php echo $this->getChild('left')->toHtml(); ?></div>
+
+
+    <div> <?php //echo $this->setTemplate ?></div>
+
+
+</body>
+</html>
+
+    <!-- <form>
+        <h1>hello</h1>
+        <?php //echo Mage::getModel('core/request')->getParams('pid'); ?> 
+        <input type="text" name="acb" value="">
+    </form> -->
