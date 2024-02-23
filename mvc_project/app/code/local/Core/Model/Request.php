@@ -1,7 +1,8 @@
 <?php
 /* The Core_Model_Request class is responsible for handling and parsing the request URI to determine
 the module, controller, and action names for a PHP MVC application. */
-class Core_Model_Request {
+class Core_Model_Request
+{
 	protected $_moduleName;
 	protected $_controllerName;
 	protected $_actionName;
@@ -9,14 +10,14 @@ class Core_Model_Request {
 	{
 		$request = $this->getRequestUri();
 		$uri = array_filter(explode("/", $request));
-		print_r($uri);
-		$this->_moduleName		=isset($uri[0]) ? $uri[0] : 'page';
-		$this->_controllerName	=isset($uri[1]) ? $uri[1] : 'index';
-		$this->_actionName		=isset($uri[2]) ? $uri[2] : 'index';
-
+		// print_r($uri);
+		$this->_moduleName		= isset($uri[0]) ? $uri[0] : 'page';
+		$this->_controllerName	= isset($uri[1]) ? $uri[1] : 'index';
+		$this->_actionName		= isset($uri[2]) ? $uri[2] : 'index';
 	}
 
-	public function getParams($key = '') {
+	public function getParams($key = '')
+	{
 		return ($key == '')
 			? $_REQUEST
 			: (isset($_REQUEST[$key])
@@ -25,7 +26,8 @@ class Core_Model_Request {
 			);
 	}
 
-	public function getPostData($key = '') {
+	public function getPostData($key = '')
+	{
 		return ($key == '')
 			? $_POST
 			: (isset($_POST[$key])
@@ -34,7 +36,8 @@ class Core_Model_Request {
 			);
 	}
 
-	public function getQueryData($key = '') {
+	public function getQueryData($key = '')
+	{
 		return ($key == '')
 			? $_GET
 			: (isset($_GET[$key])
@@ -46,38 +49,42 @@ class Core_Model_Request {
 	public function isPost()
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-		    return true;
+			return true;
 		}
 		return false;
 	}
 
 
-	public function getRequestUri(){
+	public function getRequestUri()
+	{
 		$uri = $_SERVER['REQUEST_URI'];
-		$uri = str_replace('/internship/mvc_project/','', $uri);
-		$pos = strpos($uri, '?');
-		if($pos === false) $pos = strlen($uri);
-		$uri = substr($uri, 0, $pos);
+		$uri = str_replace('/internship/mvc_project/', '', $uri);
+
+		if ((strpos($uri, '?')) !== false) {
+			$uri = stristr($uri, '?', True);
+		}
 		return $uri;
 	}
 
-	public function getActionName(){
+	public function getActionName()
+	{
 		return $this->_actionName;
 	}
-	public function getModuleName(){
+	public function getModuleName()
+	{
 		return $this->_moduleName;
 	}
-	public function getControllerName(){
+	public function getControllerName()
+	{
 		return $this->_controllerName;
 	}
 
-	public function getFullControllerClass(){
+	public function getFullControllerClass()
+	{
 		$strClass = $this->_moduleName . '_Controller_' . $this->_controllerName;
-		$strClass = ucwords($strClass,"_");
+		$strClass = ucwords($strClass, "_");
 		// echo $strClass;
 		return $strClass; // return ucwords($this->_moduleName."_Controller_".$this->_controllerName, "_");
 
 	}
-
 }
-

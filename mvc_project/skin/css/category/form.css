@@ -1,0 +1,12 @@
+form {
+  background-color: lightblue;
+}
+form {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  width: 500px;
+}

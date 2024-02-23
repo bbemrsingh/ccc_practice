@@ -1,0 +1,21 @@
+.header {
+  width: 100%;
+  height: 6em;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2em;
+}
+
+ul {
+  margin-top: auto;
+  display: flex;
+  gap: 2em;
+  list-style-type: none;
+}
+
+ul li a {
+  cursor: pointer;
+}

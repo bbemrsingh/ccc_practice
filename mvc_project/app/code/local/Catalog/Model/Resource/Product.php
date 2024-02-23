@@ -1,6 +1,6 @@
 <?php
 
-class Catalog_Model_Resource_Product
+class Catalog_Model_Resource_Product extends Core_Model_Resource_Abstract
 {
     protected $_tableName = "";
     protected $_primaryKey = "";
@@ -11,28 +11,6 @@ class Catalog_Model_Resource_Product
         $this->_primaryKey = $primaryKey;
     }
 
-    public function getTableName()
-    {
-        return $this->_tableName;
-    }
-
-    public function load($id, $column = null)
-    {
-        $sql = "SELECT * FROM {$this->_tableName} WHERE  {$this->_primaryKey} = {$id} LIMIT 1";
-        // echo $sql;
-        return $this->getAdapter()->fetchRow($sql);
-    }
-
-    public function getAdapter()
-    {
-        return new Core_Model_Db_Adapter;
-    }
-
-    public function getPrimaryKey()
-    {
-        return $this->_primaryKey;
-    }
-    //above part is abstract
     public function __construct()
     {
         $this->init('catalog_product', 'product_id');
@@ -62,4 +40,31 @@ class Catalog_Model_Resource_Product
         $values = implode(", ", $values);
         return "INSERT INTO $table_name($columns) VALUES($values);";
     }
+
+    // function deletesql($tb, $data = [])
+    // {
+    //     $cols = $vals = [];
+    //     foreach ($data as $column => $value) {
+    //         $cols[] = "$column = '$value'";
+    //     }
+
+    //     $cols = implode("AND", $cols);
+    //     $sql = "DELETE FROM {$tb} WHERE {$cols}";
+    //     return $sql;
+    // }
+
+    // function updatesql($tb, $data = [], $where = [])
+    // {
+    //     $columns = $whereCond = [];
+    //     foreach ($data as $col1 => $val) {
+    //         $columns[] = "$col1 = '$val'";
+    //     }
+    //     foreach ($where as $col2 => $val) {
+    //         $whereCond[] = "$col2 = '$val'";
+    //     }
+    //     $columns = implode(",", $columns);
+    //     $whereCond = implode("AND", $whereCond);
+    //     $sql =  "UPDATE {$tb} SET {$columns} WHERE {$whereCond}";
+    //     return $sql;
+    // }
 }

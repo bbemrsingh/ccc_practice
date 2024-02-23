@@ -1,57 +1,56 @@
-<?php  
+<?php
 
 class Core_Model_Abstract
 {
     protected $_data = [];
 
-    protected $_resourceClass = ''; 
-    protected $_collectionClass = ''; 
-    protected $_resource = null; 
-    protected $_collection = null; 
+    protected $_resourceClass = '';
+    protected $_collectionClass = '';
+    protected $_resource = null;
+    protected $_collection = null;
     public function __construct()
     {
         $this->init();
     }
     public function init()
     {
-
     }
     public function setResourceClass($resourceClass)
     {
-
-    } 
-    public function setCollectionClass($collectionClass) 
-    {
-
     }
-    
-    public function getId()                 
+    public function setCollectionClass($collectionClass)
+    {
+    }
+
+    public function getId()
     {
         return $this->_data[$this->getResource()->getPrimaryKey()];
     }
-    public function setId($id)              
+    public function setId($id)
     {
         $this->_data[$this->getResource()->getPrimaryKey()] = $id;
         return $this;
-    } 
-    public function getResource() 
+    }
+    public function getResource()
     {
         // $modelClass = get_class($this);
         // $class = substr($modelClass,strpos($modelClass,'_Model_')+7) . '_Resource_' . substr($modelClass,strpos($modelClass,'_Model_')+7);
         // return new $class;
         return new $this->_resourceClass();
+    }
+    public function getCollection()
+    {
+        $collection = new $this->_collectionClass();
+        $collection->setResource($this->getResource());
+        $collection->select();
+        return $collection;
+    }
 
+    public function getTableName()
+    {
+        return $this->_tableName;
+    }
 
-    }
-    public function getCollection() {
-      
-        
-    }
-    
-    public function getTableName() {
-       
-        
-    }
 
     public function camelCase2UnderScore($str, $separator = "_")
     {
@@ -62,65 +61,61 @@ class Core_Model_Abstract
         $str = preg_replace("/[A-Z]/", $separator . "$0", $str);
         return strtolower($str);
     }
-    public function __call($method,$args)
+    public function __call($method, $args)
     {
-        
-        $name = $this->camelCase2UnderScore(substr($method,3));   
+
+        $name = $this->camelCase2UnderScore(substr($method, 3));
         return isset($this->_data[$name])
-        ? $this->_data[$name] 
-        : '';
+            ? $this->_data[$name]
+            : '';
     }
-    public function __set($key, $value) {
-  
-        
-    }
-    public function __get($key) {
-
- 
-    }
-    public function __unset($key) {
-
-        
-    }
-    public function getData($key=null) 
+    public function __set($key, $value)
     {
-        
-        return $this->_data;
-        
-
     }
-    public function setData($data) 
+    public function __get($key)
+    {
+    }
+    public function __unset($key)
+    {
+    }
+    public function getData($key = null)
+    {
+
+        return $this->_data;
+    }
+    public function setData($data)
     {
         $this->_data = $data;
         return $this;
-       
-        
     }
-    public function addData($key, $value) {
-
-        
-    }
-    public function removeData($key = null) 
+    public function addData($key, $value)
     {
-
     }
-    public function save() 
+    public function removeData($key = null)
     {
-        $this->getResource()->save($this);
+    }
+    public function save()
+    {
+        $this->getResource()->save($this); //returns catalog_Model_Resource_Product object
+        return $this;
+    }
+    public function update()
+    {
+        $this->getResource()->update($this);
         return $this;
     }
 
-    public function load($id, $column=null) 
+    public function load($id, $column = null)
     {
         // print_r($this->getResource());
-        $this->_data = $this->getResource()->load($id,$column);
-        
+        $this->_data = $this->getResource()->load($id, $column);
         return $this;
     }
-    public function delete() {
-
-    
+    public function delete()
+    {
+        if ($this->getId()) {
+            $this->getResource()->delete($this);
+        }
+        return $this;
     }
-
 }
-?>

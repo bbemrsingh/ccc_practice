@@ -1,7 +1,8 @@
-<?php 
+<?php
 /* The Core_Block_Template class is a PHP class that represents a template block and provides methods
 for managing child blocks and rendering the template. */
-class Core_Block_Template extends Core_Block_Abstract{
+class Core_Block_Template extends Core_Block_Abstract
+{
 
     public $template;
 
@@ -13,12 +14,11 @@ class Core_Block_Template extends Core_Block_Abstract{
     }
     public function addChild($key, $value)
     {
-        $this->_child[$key] = $value; 
+        $this->_child[$key] = $value;
         return $this;
     }
     public function removeChild($key)
     {
-        
     }
     /**
      * The function `getChildHtml` returns the HTML representation of a child element based on the
@@ -34,34 +34,27 @@ class Core_Block_Template extends Core_Block_Abstract{
      */
     public function getChild($key)
     {
+        // echo "22";
         return $this->_child[$key];
     }
 
     public function getChildHtml($key)
     {
-        $html='';   
-        if  ($key =='' && count($this->_child)){
-            foreach ($this->_child as $_child){
+        $html = '';
+        if ($key == '' && count($this->_child)) {
+            foreach ($this->_child as $_child) {
                 $html .= $_child->toHtml();
             }
-        }
-        else{
-                $html = $this->getChild($key)->toHtml();
+        } else {
+            $html = $this->getChild($key)->toHtml();
         }
         return $html;
     }
-    // this function written be in abstract file only 
-    // public function getTemplate()
-    // {
-    //     return $this->template;
-    // }
-    public function setTemplate($template){
-        $this->template = $template;
-    }
+
+
 
     public function getRequest()
     {
         return Mage::getModel('core/request');
     }
-
 }

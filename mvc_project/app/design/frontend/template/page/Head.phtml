@@ -1,14 +1,16 @@
- <!-- This code is generating HTML script and style taāgs based on the values returned by the `getJs()` and `getCss()` methods. -->
-<?php $js = $this->getJs(); ?>
-<?php if(count($js)):?>
-    <?php foreach($js as $_js):?>
-        <script type="" src="<?php echo $_js;?>"></script>
-    <?php endforeach;?>
-    <?php endif?>
+ <!-- This code is generating HTML script and style tags based on the values returned by the `getJsUrl()` and `getCssUrl()` methods. which are written in  -->
 
-<?php $css = $this->getCss(); ?>
-<?php if(count($css)):?>
-    <?php foreach($css as $_css):?>
-        <style type="" src="<?php echo $_css;?>" ></style>
-    <?php endforeach;?>
-<?php endif?>
+ <?php $js = $this->getJs(); ?>
+ <?php if (count($js)) : ?>
+     <?php foreach ($js as $_js) : ?>
+         <script src="<?php echo $this->getJsUrl($_js); ?>"></script>
+     <?php endforeach; ?>
+ <?php endif; ?>
+
+ <?php $css = $this->getCss(); ?>
+ <?php if (count($css)) : ?>
+     <?php foreach ($css as $_css) : ?>
+         <link rel="stylesheet" href="<?php echo $this->getCssUrl($_css) ?>">
+         </link>
+     <?php endforeach; ?>
+ <?php endif; ?>

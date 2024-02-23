@@ -6,38 +6,32 @@ class Core_Block_Layout extends Core_Block_Template
 {
     public function __construct()
     {
+        $this->setTemplate('core/1column.phtml');
+        //here we are storing core/1column.phtml in template variable using settemplate method so that we can use gettemplate to get this address anywhere.
         $this->prepareChildren();
-        $this->setTemplate('core/1column.phtml'); //setting common header for all pages
     }
     public function prepareChildren()
     {
-        
+
         $head = $this->createBlock('page/head');
         $this->addChild('head', $head);
 
-        $header = $this->createBlock("page/header");   
+        $header = $this->createBlock("page/header");
         $this->addChild('header', $header);
-
 
         $content = $this->createBlock('page/content');
         $this->addChild('content', $content);
 
-        
-        // $Product_form = $this->createBlock('catalog/admin_product');
-        // $this->addChild('form', $Product_form);//addchild me jo 'form' ye na phtml file ka name hai.
-
         $footer = $this->createBlock('page/footer');
         $this->addChild('footer', $footer);
-        
-        $message = $this->createBlock('core/template');
-        $message->setTemplate('core/message.phtml');
-        $this->addChild('message', $message);
     }
     public function createBlock($className)
     {
         return Mage::getBlock($className);
         // Mage::getBlock('page/header'); //setting common header for all pages
     }
-
+    public function getRequest()
+    {
+        return Mage::getModel('core/request');
+    }
 }
-?>

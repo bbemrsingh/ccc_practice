@@ -1,0 +1,58 @@
+<div class="form-container form-group">
+    <form action="<?php echo $this->getUrl('admin/catalog_product/save') ?>" method="post">
+
+        <br>
+        <div>
+            <input type="text" name="product[product_id]" id=""><br>
+            <label for="sku">SKU</label>
+            <input type="text" name="product[sku]" required><br>
+
+            <label for=" name">Name</label>
+            <input type="text" name="product[name]"><br>
+
+            <label for="color">Color</label>
+            <input type="text" name="product[color]"><br>
+
+            <label for="size">Size</label>
+            <input type="text" name="product[size]"><br>
+
+            <label for="">Description</label>
+            <textarea name="product[description]" rows="4" cols="50"></textarea><br>
+
+            <label for="image_link">Image Link</label>
+            <input type="text" name="product[image_link]"><br>
+
+            <label for="link">Link</label>
+            <input type="text" name="product[link]"><br>
+
+            <label for="category_id">Category ID</label>
+            <input type="text" name="product[category_id]"><br>
+
+            <label for="price">Pice</label>
+            <input type="text" name="product[price]"><br>
+
+            <label for="mfr_cost">Manufactur Cost</label>
+            <input type="text" name="product[mfr_cost]"><br>
+
+            <label for="shipping_cost">Shipping Cost</label>
+            <input type="text" name="product[shipping_cost]"><br>
+
+            <label for="total_cost">Total Cost</label>
+            <input type="text" name="product[total_cost]"><br>
+
+            <label for="margin_percentage">Margin Percentage</label>
+            <input type="text" name="product[margin_percentage]"><br>
+
+            <label for="min_price">Minimum Price</label>
+            <input type="text" name="product[min_price]"><br>
+
+            <label>Status</label>
+            <input type="radio" id="enable" name="product[status]" value="enable">
+            <label for="enable">Enable</label>
+
+            <input type="radio" id="disable" name="product[status]" value="disable">
+            <label for="disable">Disable</label><br>
+        </div>
+        <input type="submit" name="submit" value="submit" class="btn btn-primary"></button>
+    </form>
+</div>

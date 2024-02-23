@@ -1,4 +1,4 @@
-<?php  
+<?php
 
 class Page_Block_Content extends Core_Block_Template
 {
@@ -7,5 +7,3 @@ class Page_Block_Content extends Core_Block_Template
         $this->setTemplate("page/content.phtml");
     }
 }
-
-?>

@@ -1,8 +1,8 @@
-<?php 
+<?php
 class Catalog_Block_Admin_Category extends Core_Block_Template
 {
     public function __construct()
-        {
-        $this->setTemplate("catalog/Category.phtml");
+    {
+        $this->setTemplate("catalog/admin/category/form.phtml");
     }
 }

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /* The below class is a PHP class that serves as an abstract base class for blocks in a web
 application, providing methods for setting and getting templates, managing data, generating URLs,
@@ -8,10 +8,11 @@ class Core_Block_Abstract
 
     public $template;
     public $data = [];
-    
+
     public function setTemplate($template)
     {
-        return $this->template = $template;
+        $this->template = $template;
+        return $this;
     }
     public function getTemplate()
     {
@@ -33,33 +34,34 @@ class Core_Block_Abstract
     {
         // $this->data[$key] = $value;
     }
-     
-    public function getData($key=null)
+
+    public function getData($key = null)
     {
         if ($key === null) {
             return $this->data;
         }
         return isset($this->data[$key]) ? $this->data[$key] : null;
     }
-    
-    public function setData($data){
+
+    public function setData($data)
+    {
         $this->data[] = $data;
+        return $this;
     }
-    
+
     // public function getUrl($action = null, $controller = null, $params = [], $resetParams = false)
     public function getUrl($path)
     {
         return "http://localhost/internship/mvc_project/" . "$path";
     }
-    
+
     public function getRequest()
     {
         return Mage::getModel("core/request");
     }
-    
+
     public function render()
     {
         include Mage::getBaseDir('app') . '/design/frontend/template/' . $this->getTemplate();
     }
-
 }
