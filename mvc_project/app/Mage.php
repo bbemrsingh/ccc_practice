@@ -7,6 +7,7 @@ registry, and getting the base directory path. */
 class Mage
 {
     private static $registry = [];
+    private static $_singleTon = [];
     private static $baseDir  = 'c:/xampp/htdocs/internship/mvc_project/';
     //http://localhost/internship/mvc_project/
     private static $baseUrl  = 'http://localhost/internship/mvc_project/';
@@ -18,19 +19,24 @@ class Mage
         // $uri = new Core_Model_Request(); // $uri=Mage::getModel("core/request");// $uri =  $uri->getRequestUri(); // echo $uri;// $ctrl = new Mage_Core_Controller();
 
     }
+
     public static function getSingleton($className)
     {
+
+        if (isset(self::$_singleTon[$className])) {
+            return  self::$_singleTon[$className];
+        } else {
+            return self::$_singleTon[$className] = self::getModel($className);
+        }
     }
-    /**
-     * The below PHP code defines two static functions, getModel and getBlock, which create and return
+    /** The below PHP code defines two static functions, getModel and getBlock, which create and return
      * instances of classes based on the provided class name.
      * 
      *The className parameter is a string that represents the name of the class that
      * you want to instantiate.
      * 
      * functions `getModel` and `getBlock` are returning an instance of the class specified
-     * by the `` parameter.
-     */
+     * by the `` parameter.*/
     public static function getModel($className)
     {
         $className = str_replace("/", "_Model_", $className);
@@ -41,6 +47,7 @@ class Mage
 
     public static function getBlock($className)
     {
+        // argument = catalog/product
         $className = str_replace("/", "_Block_", $className);
         $className = ucwords(str_replace("/", "_", $className), "_");
         // echo $className;

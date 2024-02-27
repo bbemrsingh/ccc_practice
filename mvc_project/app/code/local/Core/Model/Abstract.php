@@ -6,14 +6,12 @@ class Core_Model_Abstract
 
     protected $_resourceClass = '';
     protected $_collectionClass = '';
+    protected $_modelClass = '';
     protected $_resource = null;
     protected $_collection = null;
     public function __construct()
     {
         $this->init();
-    }
-    public function init()
-    {
     }
     public function setResourceClass($resourceClass)
     {
@@ -42,6 +40,7 @@ class Core_Model_Abstract
     {
         $collection = new $this->_collectionClass();
         $collection->setResource($this->getResource());
+        // $collection->setModeClass($this->getModeClass());
         $collection->select();
         return $collection;
     }
@@ -52,6 +51,10 @@ class Core_Model_Abstract
     }
 
 
+    /** function `camelCase2UnderScore` takes a string in camelCase format and converts it to
+     * snake_case format by inserting an underscore before each uppercase letter (except the first
+     * letter) and then converting the whole string to lowercase. If the input string is empty, it
+     * returns the same empty string.*/
     public function camelCase2UnderScore($str, $separator = "_")
     {
         if (empty($str)) {
@@ -90,6 +93,8 @@ class Core_Model_Abstract
     }
     public function addData($key, $value)
     {
+        $this->_data[$key] = $value;
+        return $this;
     }
     public function removeData($key = null)
     {

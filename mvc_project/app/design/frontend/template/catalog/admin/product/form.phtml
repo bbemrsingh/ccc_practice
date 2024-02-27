@@ -1,58 +1,95 @@
-<div class="form-container form-group">
-    <form action="<?php echo $this->getUrl('admin/catalog_product/save') ?>" method="post">
+<div class="container form-container text-white">
 
-        <br>
-        <div>
-            <input type="text" name="product[product_id]" id=""><br>
-            <label for="sku">SKU</label>
-            <input type="text" name="product[sku]" required><br>
+    <form action="<?php echo $this->getUrl('admin/catalog_product/save') ?>" method="post" class="container" style="background: url('<?php echo Mage::getBaseUrl('skin/images/productFormBg.jpg') ?>');">
+        <?php $productModel = $this->getProductForm(); ?>
+        <div class="container-fluid">
+            <input type="hidden" name="product[product_id]" id="" value="<?php echo $productModel->getProductId(); ?>"><br>
+            <div class="row">
+                <div class="col-5">
+                    <label for="sku" class="control-label col-sm-2">SKU</label>
+                    <input type="text" name="product[sku]" value="<?php echo $productModel->getsku(); ?>" required><br>
+                </div>
+                <div class="col-5">
+                    <label for="name" class="control-label col-sm-2">Name</label>
+                    <input type="text" name="product[name]" value="<?php echo $productModel->getname(); ?>"><br>
+                </div>
+            </div>
 
-            <label for=" name">Name</label>
-            <input type="text" name="product[name]"><br>
+            <div class="row">
+                <div class="col-5">
+                    <label for="color" class="control-label col-sm-2">Color</label>
+                    <input type="text" name="product[color]" value="<?php echo $productModel->getcolor(); ?>"><br>
+                </div>
+                <div class="col-5">
+                    <label for="size" class="control-label col-sm-2">Size</label>
+                    <input type="text" name="product[size] value=" <?php echo $productModel->getsize(); ?>"><br>
+                </div>
+            </div>
 
-            <label for="color">Color</label>
-            <input type="text" name="product[color]"><br>
+            <div class="container form-group">
+                <label for="product[description]" id="description" class="control-label col-sm-0.5">Description</label>
+                <textarea name="product[description]" rows="4" cols="50" class="form-control" value="<?php echo $productModel->getdescription(); ?>"></textarea><br>
+            </div>
 
-            <label for="size">Size</label>
-            <input type="text" name="product[size]"><br>
+            <div>
+                <label for="image_link" class="control-label col-sm-2">Image Link</label>
+                <input type="text" name="product[image_link]" value="<?php echo $productModel->getimageLink(); ?>"><br>
+            </div>
+            <div>
+                <label for="link" class="control-label col-sm-2">Link</label>
+                <input type="text" name="product[link]" value="<?php echo $productModel->getlink(); ?>"><br>
+            </div>
+            <div>
+                <label for="product[category_id]" class="control-label col-sm-2">Category ID</label>
+                <input type="text" name="product[category_id]" value="<?php echo $productModel->getcategoryId(); ?>"><br>
+            </div>
 
-            <label for="">Description</label>
-            <textarea name="product[description]" rows="4" cols="50"></textarea><br>
+            <div class="row">
+                <div class="col-12">
+                    <label for="price" class="control-label col-sm-2">Price</label>
+                    <input type="text" name="product[price]" value="<?php echo $productModel->getprice(); ?>"><br>
+                </div>
+                <div class="col-12">
+                    <label for="mfr_cost" class="control-label col-sm-2">Manufactur Cost</label>
+                    <input type="text" name="product[mfr_cost]" value="<?php echo $productModel->getmfrCost(); ?>"><br>
+                </div>
+            </div>
 
-            <label for="image_link">Image Link</label>
-            <input type="text" name="product[image_link]"><br>
+            <div class="row">
+                <div class="col-12">
+                    <label for="shipping_cost" class="control-label col-sm-2">Shipping Cost</label>
+                    <input type="text" name="product[shipping_cost]" value="<?php echo $productModel->getshippingCost(); ?>"><br>
 
-            <label for="link">Link</label>
-            <input type="text" name="product[link]"><br>
+                </div>
+                <div class="col-12">
+                    <label for="total_cost" class="control-label col-sm-2">Total Cost</label>
+                    <input type="text" name="product[total_cost]" value="<?php echo $productModel->gettotalCost(); ?>"><br>
 
-            <label for="category_id">Category ID</label>
-            <input type="text" name="product[category_id]"><br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <label for="margin_percentage" class="control-label col-sm-2">Margin Percentage</label>
+                    <input type="text" name="product[margin_percentage]" value="<?php echo $productModel->getmarginPercentage(); ?>"><br>
 
-            <label for="price">Pice</label>
-            <input type="text" name="product[price]"><br>
+                </div>
+                <div class="col-12">
+                    <label for="min_price" class="control-label col-sm-2">Minimum Price</label>
+                    <input type="text" name="product[min_price]" value="<?php echo $productModel->getminPrice(); ?>"><br>
 
-            <label for="mfr_cost">Manufactur Cost</label>
-            <input type="text" name="product[mfr_cost]"><br>
+                </div>
+            </div>
 
-            <label for="shipping_cost">Shipping Cost</label>
-            <input type="text" name="product[shipping_cost]"><br>
-
-            <label for="total_cost">Total Cost</label>
-            <input type="text" name="product[total_cost]"><br>
-
-            <label for="margin_percentage">Margin Percentage</label>
-            <input type="text" name="product[margin_percentage]"><br>
-
-            <label for="min_price">Minimum Price</label>
-            <input type="text" name="product[min_price]"><br>
-
-            <label>Status</label>
+            <label class="control-label col-sm-2">Status</label>
             <input type="radio" id="enable" name="product[status]" value="enable">
             <label for="enable">Enable</label>
 
             <input type="radio" id="disable" name="product[status]" value="disable">
             <label for="disable">Disable</label><br>
+
+            <input type="submit" name="submit" value="submit" class="btn btn-primary"></button>
+
         </div>
-        <input type="submit" name="submit" value="submit" class="btn btn-primary"></button>
-    </form>
+</div>
+</form>
 </div>

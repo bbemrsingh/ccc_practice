@@ -19,7 +19,7 @@ class Core_Model_Db_Adapter
                 $this->config["database"],
             );
         }
-        return $this;
+        return $this->connect;
     }
     public function fetchAll($query)
     {
@@ -29,12 +29,6 @@ class Core_Model_Db_Adapter
             $row[] = $_row;
         }
         return $row;
-    }
-    public function fetchPairs($query)
-    {
-    }
-    public function fetchOne($query)
-    {
     }
     public function fetchRow($query)
     {
@@ -65,15 +59,23 @@ class Core_Model_Db_Adapter
     {
         $result = mysqli_query($this->connect(), $query);
         if ($result) {
-            echo '<script>alert("Data updated successfully")</script>';
-            // return mysqli_insert_id($this->connect);
+            return mysqli_insert_id($this->connect);
         } else {
-            echo '<script>alert("Data not updated")</script>';
+            return false;
         }
     }
     public function delete($query)
     {
-        $this->connect();
-        $sql = $this->connect->query($query);
+        if (mysqli_query($this->connect(), $query)) {
+            return mysqli_insert_id($this->connect());
+        } else {
+            return false;
+        }
+    }
+    public function fetchPairs($query)
+    {
+    }
+    public function fetchOne($query)
+    {
     }
 }

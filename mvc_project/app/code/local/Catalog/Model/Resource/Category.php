@@ -1,6 +1,6 @@
 <?php
 
-class Catalog_Model_Resource_Product extends Core_Model_Resource_Abstract
+class Catalog_Model_Resource_Category extends Core_Model_Resource_Abstract
 {
     protected $_tableName = "";
     protected $_primaryKey = "";
@@ -13,6 +13,6 @@ class Catalog_Model_Resource_Product extends Core_Model_Resource_Abstract
 
     public function __construct()
     {
-        $this->init('catalog_product', 'product_id');
+        $this->init('catalog_category', 'category_id');
     }
 }

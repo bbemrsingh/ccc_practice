@@ -1,14 +1,83 @@
 <?php
-echo "<pre>";
+// echo "<pre>";
 $productCollection = Mage::getModel("catalog/product")->getCollection();
-// $productCollection->addFieldToFilter('name', 'abc');
-// $productCollection->addFieldToFilter('product_id', ['in'=>[52,53,54]]);
-// $productCollection->addFieldToFilter('sku', ['like'=>'%abc']);
-// $productCollection->getData();
-foreach ($productCollection->getData() as $product) {
-    print_r($product);
-    echo $product->getStatus();
-    die;
-    echo '' . $product->getProductId();
-    // echo ''. $product->delete();
-}
+// $productCollection->addFieldToFilter('category_id', '1');
+$products = $productCollection->getData(); // for update and delete btn
+
+?>
+
+
+
+<div class="table table-bordered table-hover">
+    <h1 class="table-heading">Product List</h1>
+    <table>
+        <thead>
+            <tr class="bg-success text-center">
+                <th>SKU</th>
+                <th>Name</th>
+                <th>Color</th>
+                <th>Size</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>MFR Cost</th>
+                <th>Shipping Cost</th>
+                <th>Total Cost</th>
+                <th>Margin Percentage</th>
+                <th>Min Price</th>
+                <th>Status</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <?php foreach ($productCollection->getData() as $_product) : ?>
+                <tr>
+                    <td>
+                        <?php echo $_product->getSku() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getName() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getColor() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getSize() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getDescription() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getPrice() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getMfrCost() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getShippingCost() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getTotalCost() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getMarginPercentage() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getMinPrice() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getStatus() ?>
+                    </td>
+                    <td>
+                        <a href="<?php echo $this->getUrl('admin/catalog_product/form?id=' . $_product->getProduct_id()) ?>">
+                            <input type="button" value="Update" class="btn btn-primary"></button>
+                        </a>
+                        <a href="<?php echo $this->getUrl('admin/catalog_product/delete?id=' . $_product->getProduct_id()); ?>">
+                            <button value="delete" name="delete" class="btn btn-danger">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

@@ -16,7 +16,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
 
         $child = $layout->getChild('content');
 
-        $productForm = $layout->createBlock('catalog/admin_product');
+        $productForm = $layout->createBlock('catalog/admin_product_form');
         // here we have got location of a file in productForm variable
         $child->addChild('form', $productForm);
 
@@ -24,9 +24,18 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         $layout->toHtml();
     }
 
+    public function deleteAction()
+    {
+        $id = $this->getRequest()->getParams("id");
+        $product = Mage::getModel('catalog/product')->load($id);
+        $product->setId($id)->delete();
+        header('Location: /internship/mvc_project/admin/catalog_product/list ');
+    }
+
+
+    /**The saveAction function saves product data from a request and prints the product object.*/
     public function saveAction()
     {
-
         $data = $this->getRequest()->getParams('product');
         $product = Mage::getModel('catalog/product');
         $product->setData($data)->save();
@@ -34,22 +43,17 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
         print_r($product);
     }
 
-    public function deleteAction()
-    {
-        $id = $this->getRequest()->getParams("id");
-        $product = Mage::getModel('catalog/product')->load($id);
-        $product->setId($id)->delete();
-    }
 
+    /* The listAction creates a product list block and adds it to the content section
+     * of the layout with associated CSS styling.*/
     public function listAction()
     {
-        $layout = $this->getLayout();
-        $content = $layout->getChild("content");
+        $layout = $this->getLayout(); //returns Core_Block_Layout
+        $content = $layout->getChild("content"); //returns value stored in _Child['content']
 
         $layout->getchild('head')->addCss('product/list.css');
 
-        $productList = $layout->createBlock("catalog/admin_product_list");
-
+        $productList = $layout->createBlock("catalog/admin_product_list"); //returns list.php file
         $content->addChild("productList", $productList);
         $layout->toHtml();
     }
