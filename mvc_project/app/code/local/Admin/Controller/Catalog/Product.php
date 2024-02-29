@@ -1,18 +1,15 @@
 <?php
-class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action
+class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
 {
-    public function getCss($layout)
-    {
-        $layout->getChild('head')
-            ->addCss('product/form.css');
-    }
+
+    protected $_allowedAction = ['form'];
 
     public function formAction()
     {
         $layout = $this->getLayout();
         // $layout becomes object of core_Block_layout 
         //and constructor of this layout file will also get executed
-        $this->getCss($layout);
+        $layout->getChild('head')->addCss('product/form.css');
 
         $child = $layout->getChild('content');
 

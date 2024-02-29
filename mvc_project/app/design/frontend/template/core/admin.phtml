@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVC Project</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <?php //$this->getChild('head')->addCss('header.css')->addCss('footer.css'); 
+    ?>
+    <?php echo $this->getChildHtml('head'); ?>
+
+</head>
+
+<body>
+    <div>Admin</div>
+
+    <!-- The code you provided is using PHP to echo the output of the `getChildHtml` method on the `` object. -->
+    <div>
+        <?php echo $this->getChildHtml('header'); ?>
+    </div>
+    <div>
+        <?php echo $this->getChildHtml('content'); ?>
+    </div>
+    <div>
+        <?php echo $this->getChildHtml('footer'); ?>
+    </div>
+
+    <div>
+        <?php //echo $this->setTemplate 
+        ?>
+    </div>
+</body>
+
+</html>
+
+<!-- <form>
+        <h1>hello</h1>
+        <?php //echo Mage::getModel('core/request')->getParams('pid'); 
+        ?> 
+        <input type="text" name="acb" value="">
+    </form> -->

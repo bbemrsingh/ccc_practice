@@ -8,9 +8,9 @@ class Mage
 {
     private static $registry = [];
     private static $_singleTon = [];
-    private static $baseDir  = 'c:/xampp/htdocs/internship/mvc_project/';
+    private static $baseDir = 'c:/xampp/htdocs/internship/mvc_project/';
     //http://localhost/internship/mvc_project/
-    private static $baseUrl  = 'http://localhost/internship/mvc_project/';
+    private static $baseUrl = 'http://localhost/internship/mvc_project/';
     public static function init()
     {
         $frontController = new Core_Controller_Front();
@@ -24,7 +24,7 @@ class Mage
     {
 
         if (isset(self::$_singleTon[$className])) {
-            return  self::$_singleTon[$className];
+            return self::$_singleTon[$className];
         } else {
             return self::$_singleTon[$className] = self::getModel($className);
         }
@@ -59,14 +59,14 @@ class Mage
     }
     public static function registry($key)
     {
-        return isset(self::$registry[$key]) ? self::$registry[$key]  : null;
+        return isset(self::$registry[$key]) ? self::$registry[$key] : null;
     }
     public static function getBaseDir($subDir = null)
     {
         if ($subDir) {
             return self::$baseDir . $subDir;
         }
-        return self::$baseDir;
+        return self::$baseDir . '/';
     }
     public static function getBaseUrl($subUrl = null)
     {

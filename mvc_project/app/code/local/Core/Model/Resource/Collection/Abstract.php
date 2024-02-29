@@ -5,6 +5,7 @@
 
 class Core_Model_Resource_Collection_Abstract
 {
+    protected $_modelClass = "";
     protected $_resource = null;
     protected $_select = [];
     protected $_data = [];
@@ -67,10 +68,10 @@ class Core_Model_Resource_Collection_Abstract
                             $_v = implode(',', $_v);
                         }
                         switch ($_condition) {
-                            case 'eq':
+                            case 'eq': // agar single record chahiye to "eq"
                                 $whereCondition[] = "{$column} = '{$_v}'";
                                 break;
-                            case 'in':
+                            case 'in': // agar multiple record chahiye to "in" use hoga
                                 $whereCondition[] = "{$column} IN ({$_v})";
                                 break;
                             case 'like':
@@ -86,7 +87,7 @@ class Core_Model_Resource_Collection_Abstract
         // echo $sql;
         $result = $this->_resource->getAdapter()->fetchAll($sql);
         foreach ($result as $row) {
-            $this->_data[] = Mage::getModel('catalog/product')->setData($row);
+            $this->_data[] = Mage::getModel($this->_modelClass)->setData($row); // modelClass has 'moduleName/filename' in it. eg 1) 'catalog/product' 2) 'customer/Account'
         }
         // print_r($this->_data);
     }
@@ -94,5 +95,10 @@ class Core_Model_Resource_Collection_Abstract
     {
         $this->load();
         return $this->_data;
+    }
+    public function setModelClass($modelClass)
+    {
+        $this->_modelClass = $modelClass;
+        return $this;
     }
 }

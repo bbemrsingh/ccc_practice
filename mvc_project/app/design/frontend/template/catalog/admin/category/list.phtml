@@ -1,22 +1,22 @@
 <?php
 echo "<pre>";
 $productCollection = Mage::getModel("catalog/category")->getCollection();
+
 ?>
 
-<div class="table-container">
+<div class="container table table-bordered table-hover">
     <h1 class="table-heading">Category List</h1>
-    <table border="3px">
+    <table>
         <thead>
-            <tr>
+            <tr class="bg-success text-center">
                 <th>SKU</th>
                 <th>Name</th>
                 <th>Status</th>
-                <th>Update</th>
-                <th>Delete</th>
+                <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
-            <?php foreach ($productCollection->getData() as $_product) : ?>
+        <tbody class="text-center">
+            <?php foreach ($productCollection->getData() as $_product): ?>
                 <tr>
                     <td>
                         <?php echo $_product->getSku() ?>
@@ -28,12 +28,12 @@ $productCollection = Mage::getModel("catalog/category")->getCollection();
                         <?php echo $_product->getStatus() ?>
                     </td>
                     <td>
-                        <a href="<?php echo $this->getUrl('admin/catalog_category/form?id=' . $_product->getProduct_id()) ?>">
+                        <a
+                            href="<?php echo $this->getUrl('admin/catalog_category/form?id=' . $_product->getProduct_id()) ?>">
                             <input type="button" value="Update" class="btn btn-primary"></button>
                         </a>
-                    </td>
-                    <td>
-                        <a href="<?php echo $this->getUrl('admin/catalog_category/delete?id=' . $_product->getProduct_id()); ?>">
+                        <a
+                            href="<?php echo $this->getUrl('admin/catalog_category/delete?id=' . $_product->getProduct_id()); ?>">
                             <button value="delete" name="delete" class="btn btn-danger">Delete</button>
                         </a>
                     </td>

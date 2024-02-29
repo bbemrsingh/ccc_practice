@@ -1,8 +1,9 @@
 <?php
 
-class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action
+class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action
 {
     //indexAction function here displayes category.phtml file when we type in browser address bar internship/mvc_project/catalog/category
+    protected $_allowedAction = ['form', 'list'];
     public function formAction()
     {
         $layout = $this->getLayout();
@@ -10,26 +11,25 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Front_Action
 
         $layout->getChild('head')->addCss('category/form.css'); //including css file
 
-        $category_form = Mage::getBlock('catalog/admin_category_form'); //returning object of catagory form
+        $categoryForm = Mage::getBlock('catalog/admin_category_form'); //returning object of catagory form
 
-        $content->addChild('categoryForm', $category_form); //adding form.phtml into content
+        $content->addChild('categoryForm', $categoryForm); //adding form.phtml into content
         $layout->toHtml();
     }
 
     public function saveAction()
     {
         $data = $this->getRequest()->getParams('category');
-        $product = Mage::getModel('catalog/category');
-        $product->setData($data)->save();
+        $category = Mage::getModel('catalog/category');
+        $category->setData($data)->save();
         echo '<pre>';
-        print_r($product);
+        print_r($category);
     }
 
     public function deleteAction()
     {
         $id = $this->getRequest()->getParams("id");
-        $product = Mage::getModel('catalog/catagory')->load($id);
-        $product->setId($id)->delete();
+        $category = Mage::getModel('catalog/catagory')->load($id)->delete();
         header('Location: /internship/mvc_project/admin/catalog_category/list ');
     }
 

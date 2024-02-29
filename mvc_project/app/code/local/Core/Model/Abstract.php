@@ -40,7 +40,7 @@ class Core_Model_Abstract
     {
         $collection = new $this->_collectionClass();
         $collection->setResource($this->getResource());
-        // $collection->setModeClass($this->getModeClass());
+        $collection->setModelClass($this->_modelClass);
         $collection->select();
         return $collection;
     }

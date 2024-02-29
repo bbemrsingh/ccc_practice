@@ -1,17 +1,17 @@
 <!-- catalog_category table -->
+<?php $categoryModel = $this->getCategoryForm();
+?>
 <div>
     <form action="<?php echo $this->getUrl('admin/catalog_category/save') ?>" method="post">
 
-        <?php $categoryModel = $this->getCategoryForm();
-        ?>
 
         <div class="row">
             <div class="col-4">
-                <label for="category_id">Category Id</label>
-                <input type="number" name="category[category_id]"><br>
 
-                <label for="category_name">Category Name</label>
-                <input type="text" name="category[category_name]"><br>
+                <input type="hidden" name="category[category_id]"><br>
+
+                <label for="category[category_name]">Category Name</label>
+                <input type="text" id="category[category_name]" name="category[category_name]"><br>
             </div>
         </div><br>
         <label>Status</label><br>

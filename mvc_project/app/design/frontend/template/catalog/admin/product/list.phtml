@@ -6,8 +6,6 @@ $products = $productCollection->getData(); // for update and delete btn
 
 ?>
 
-
-
 <div class="table table-bordered table-hover">
     <h1 class="table-heading">Product List</h1>
     <table>
@@ -30,7 +28,7 @@ $products = $productCollection->getData(); // for update and delete btn
             </tr>
         </thead>
         <tbody class="text-center">
-            <?php foreach ($productCollection->getData() as $_product) : ?>
+            <?php foreach ($productCollection->getData() as $_product): ?>
                 <tr>
                     <td>
                         <?php echo $_product->getSku() ?>
@@ -69,10 +67,12 @@ $products = $productCollection->getData(); // for update and delete btn
                         <?php echo $_product->getStatus() ?>
                     </td>
                     <td>
-                        <a href="<?php echo $this->getUrl('admin/catalog_product/form?id=' . $_product->getProduct_id()) ?>">
+                        <a
+                            href="<?php echo $this->getUrl('admin/catalog_product/form?id=' . $_product->getProduct_id()) ?>">
                             <input type="button" value="Update" class="btn btn-primary"></button>
                         </a>
-                        <a href="<?php echo $this->getUrl('admin/catalog_product/delete?id=' . $_product->getProduct_id()); ?>">
+                        <a
+                            href="<?php echo $this->getUrl('admin/catalog_product/delete?id=' . $_product->getProduct_id()); ?>">
                             <button value="delete" name="delete" class="btn btn-danger">Delete</button>
                         </a>
                     </td>

@@ -1,0 +1,37 @@
+admin/controller/banner/form
+    file path = root folder>media>banner>xyz.jpg
+    store xyz.jpg in database
+admin/controller/banner/list
+    list all banners here with edit and delete
+    edit will open form & user can see image
+
+Module 
+    banner
+
+    Show in page/index/index action or home page url 
+    under content child  
+
+
+
+url: catalog/category/view?id=1  // all the products with category 1 will be displayed.
+url: catalog/category/view?id=2  // all the products with category 2 will be displayed.
+
+url: Catalog/products/view?id=1 // all products details (except cost), Quantity box & "add To Cart" Button
+
+
+on submit of addToCart button, product_id & quantity 
+data will be posted to sales/quote/add 
+(on print_r we must get Post Data) 
+
+
+banner image
+customer login
+product detail pg
+product listing pg 
+
+
+
+
+getimageurl
+getproducturl 
+

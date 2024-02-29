@@ -1,57 +1,102 @@
-<?php 
-class Customer_Controller_Account extends
+<?php
+class Customer_Controller_Account extends Core_Controller_Front_Action
 {
-    public function loginAction(){
-        //email & password html form
+    protected $_allowedAction = ['login', 'register'];
 
-        //post data
-        $email; 
-        $password;
-
-        $data = Mage::getModel('customer/customer')->getCollection()
-        ->addFieldToFilter('$email', $email)
-        ->addFieldToFilter('$password', $password);
-
-        $count = 0;
-        $customerId = 0;
-
-        foreach($data->getData() as $data){
-            $count++;
-            $customerId = $data->getId();
-        }
-
-        if($count){
-            Mage::getSingleton('core/session')->set('logged_in_customer_id', $customerId);
-        }
-    }
-    public function dashboardAction()
+    public function init()
     {
-        //show here details about customer
-        $customerId = Mage::getSingleton(core/session)->get('logged_in_customer_id');
-        if($customerId){
-            
+        // $this->getRequest()->getActionName();
+        if (
+            !in_array($this->getRequest()->getActionName(), $this->_allowedAction) &&
+            !Mage::getSingleton('core/session')->get('logged_in_customer_id')
+        ) {
+            $this->setRedirect('customer/account/login');
+        }
+
+    }
+
+    public function loginAction()
+    {
+        $layout = $this->getLayout();
+        // gives layout ie head, header, content, footer which are in Core_Block_Layout
+        $layout->getChild('head')->addCss('customer/login.css');
+        $child = $layout->getChild('content'); 
+        $loginForm = $layout->createBlock('customer/account_login');
+        $child->addChild('loginForm', $loginForm);
+        $layout->toHtml();
+
+        // below code will run after user clicks submit button
+        if ($this->getRequest()->isPost()) {
+            $accountCredentials = $this->getRequest()->getParams('login'); //getParams gets post data from loginform 
+
+            $email = $accountCredentials['customer_email'];
+            $password = $accountCredentials['password'];
+
+            $data = Mage::getModel('customer/account')->getCollection()
+                ->addFieldToFilter('customer_email', $email)
+                ->addFieldToFilter('password', $password);
+            $count = 0;
+            $customerId = 0;
+
+            foreach ($data->getData() as $data) {
+                $count++;
+                $customerId = $data->getId();
+            }
+
+            if ($count != 0) {
+                Mage::getSingleton('core/session')
+                    ->set('logged_in_customer_id', $customerId);
+                $this->setRedirect('customer/account/dashboard');
+                // $address = Mage::getBaseUrl('customer/account/dashboard');
+                // header('location:' . $address);
+            } else {
+
+                $this->setRedirect('customer/account/login');
+
+            }
+
+
 
         }
-        else{
 
-        }
     }
 
     public function registerAction()
-    {//html form with all fields for customer accounts
-        
+    { //html form with all fields for customer accounts
+        $layout = $this->getlayout();
+        $layout->getChild('head')->addCss('customer/register.css'); // adding css file
+        $registerForm = $layout->createBlock('customer/account_register');
+        $layout->getChild('content')->addChild('registerForm', $registerForm);
+        $layout->toHtml();
     }
     public function saveAction()
-    {//post data here and store in database
-
+    { //post data here and store in database
+        $accountCredentials = $this->getRequest()->getParams('customer'); //getParams gets post data from registerform 
+        $customer = Mage::getModel('customer/account')->setData($accountCredentials)->save();
+        echo '<pre>';
+        print_r($customer);
     }
 
-    public function loginAction($arg){
-
-    }
-
-
-    public function forgotpasswordAction(){
+    public function forgotpasswordAction()
+    {
         //html pg with email option & post as same action
+
+        $layout = $this->getLayout();
+        $layout->getChild('head')->addCss('customer/forgotpassword.css');
+        $forgotpasswordForm = $layout->createBlock('customer/account_forgotpassword');
+        $layout->getChild('content')->addChild('forgotpassword', $forgotpasswordForm);
+        $layout->toHtml();
+    }
+
+
+    public function dashboardAction()
+    {
+        //show here details about customer
+        $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
+        if ($customerId) {
+            // get customer id from session & load customer object to get other data in our block file show dashboard code
+        } else {
+            echo "You are not allowed to view this page";
+        }
     }
 }

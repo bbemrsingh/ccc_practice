@@ -1,9 +1,12 @@
 <div class="container form-container text-white">
 
-    <form action="<?php echo $this->getUrl('admin/catalog_product/save') ?>" method="post" class="container" style="background: url('<?php echo Mage::getBaseUrl('skin/images/productFormBg.jpg') ?>');">
+    <form action="<?php echo $this->getUrl('admin/catalog_product/save') ?>" method="post" class="container"
+        style="background: url('<?php echo Mage::getBaseUrl('skin/images/productFormBg.jpg') ?>');">
         <?php $productModel = $this->getProductForm(); ?>
+
         <div class="container-fluid">
-            <input type="hidden" name="product[product_id]" id="" value="<?php echo $productModel->getProductId(); ?>"><br>
+            <input type="hidden" name="product[product_id]" id=""
+                value="<?php echo $productModel->getProductId(); ?>"><br>
             <div class="row">
                 <div class="col-5">
                     <label for="sku" class="control-label col-sm-2">SKU</label>
@@ -28,7 +31,8 @@
 
             <div class="container form-group">
                 <label for="product[description]" id="description" class="control-label col-sm-0.5">Description</label>
-                <textarea name="product[description]" rows="4" cols="50" class="form-control" value="<?php echo $productModel->getdescription(); ?>"></textarea><br>
+                <textarea name="product[description]" rows="4" cols="50" class="form-control"
+                    value="<?php echo $productModel->getdescription(); ?>"></textarea><br>
             </div>
 
             <div>
@@ -41,7 +45,8 @@
             </div>
             <div>
                 <label for="product[category_id]" class="control-label col-sm-2">Category ID</label>
-                <input type="text" name="product[category_id]" value="<?php echo $productModel->getcategoryId(); ?>"><br>
+                <input type="text" name="product[category_id]"
+                    value="<?php echo $productModel->getcategoryId(); ?>"><br>
             </div>
 
             <div class="row">
@@ -58,24 +63,28 @@
             <div class="row">
                 <div class="col-12">
                     <label for="shipping_cost" class="control-label col-sm-2">Shipping Cost</label>
-                    <input type="text" name="product[shipping_cost]" value="<?php echo $productModel->getshippingCost(); ?>"><br>
+                    <input type="text" name="product[shipping_cost]"
+                        value="<?php echo $productModel->getshippingCost(); ?>"><br>
 
                 </div>
                 <div class="col-12">
                     <label for="total_cost" class="control-label col-sm-2">Total Cost</label>
-                    <input type="text" name="product[total_cost]" value="<?php echo $productModel->gettotalCost(); ?>"><br>
+                    <input type="text" name="product[total_cost]"
+                        value="<?php echo $productModel->gettotalCost(); ?>"><br>
 
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
                     <label for="margin_percentage" class="control-label col-sm-2">Margin Percentage</label>
-                    <input type="text" name="product[margin_percentage]" value="<?php echo $productModel->getmarginPercentage(); ?>"><br>
+                    <input type="text" name="product[margin_percentage]"
+                        value="<?php echo $productModel->getmarginPercentage(); ?>"><br>
 
                 </div>
                 <div class="col-12">
                     <label for="min_price" class="control-label col-sm-2">Minimum Price</label>
-                    <input type="text" name="product[min_price]" value="<?php echo $productModel->getminPrice(); ?>"><br>
+                    <input type="text" name="product[min_price]"
+                        value="<?php echo $productModel->getminPrice(); ?>"><br>
 
                 </div>
             </div>

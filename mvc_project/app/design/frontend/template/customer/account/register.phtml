@@ -1,0 +1,13 @@
+<body>
+    <div class="register-container">
+        <h2>Register</h2>
+        <form action="<?php echo $this->getUrl('customer/account/save') ?>" method="post"> <!--getUrl gives object of register.php -->
+            <input type="hidden" name="customer[customer_id]" placeholder="Username" required />
+
+            <input type="email" name="customer[customer_email]" placeholder="Email" required />
+            <input type="password" name="customer[password]" placeholder="Password" required />
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required />
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
