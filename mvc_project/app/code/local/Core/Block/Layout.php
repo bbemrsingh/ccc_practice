@@ -24,6 +24,24 @@ class Core_Block_Layout extends Core_Block_Template
 
         $footer = $this->createBlock('page/footer');
         $this->addChild('footer', $footer);
+
+        if (Mage::getSingleton('core/session')->get('logged_in_customer_id')) {
+            $customer = Mage::getModel('customer/account')->load(Mage::getSingleton('core/session')->get('logged_in_customer_id'));
+            $header->addData('customer', $customer);
+        }
+
+        $messages = $this->createBlock('core/template');
+        $messages->setTemplate('core/messages');
+        $this->addChild('messages', $messages);
+
+        // $adminHeader = $this->createBlock("admin/header");
+        // $this->addChild('adminHeader', $adminHeader);
+
+        // $left = $this->createBlock('admin/left');
+        // $this->addChild('left', $left);
+
+
+
     }
     public function createBlock($className)
     {

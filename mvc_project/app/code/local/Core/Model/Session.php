@@ -17,6 +17,7 @@ class Core_Model_Session
     }
     public function get($key)
     {
+        //  Checks if specified key exists in the session. If it does, returns it's value.
         if (array_key_exists($key, $_SESSION)) {
             return $_SESSION[$key];
         }
@@ -24,16 +25,21 @@ class Core_Model_Session
     }
     public function set($key, $value)
     {
+        // Sets the specified key-value pair in the session. It returns the instance of the current object, allowing method chaining.
         $_SESSION[$key] = $value;
         return $this;
     }
     public function remove($key)
     {
+        // Removes the specified key-value pair from the session
         if (isset($_SESSION[$key])) {
             unset($_SESSION[$key]);
         }
     }
+    // Called when the object is destroyed, and it destroys the session.
     public function __destruct()
     {
+
     }
 }
+

@@ -1,18 +1,35 @@
 <?php
 class Customer_Controller_Account extends Core_Controller_Front_Action
 {
-    protected $_allowedAction = ['login', 'register'];
+    protected $_allowedAction = ['login'];
 
     public function init()
     {
-        // $this->getRequest()->getActionName();
         if (
             !in_array($this->getRequest()->getActionName(), $this->_allowedAction) &&
             !Mage::getSingleton('core/session')->get('logged_in_customer_id')
         ) {
             $this->setRedirect('customer/account/login');
         }
+    }
+    public function dashboardAction()
+    {
 
+        //show details about customer
+        $layout = $this->getLayout();
+        $layout->getChild('head')->addCss('customer/dashboard.css');
+        $child = $layout->getChild('content');
+        $customerList = $layout->createBlock("customer/account_dashboard");
+        $child->addChild('customerList', $customerList);
+        $layout->toHtml();
+
+        // $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
+        // if ($customerId) {
+        //     header('Location: /internship/mvc_project/ ');
+        //     // get customer id from session & load customer object to get other data in our block file show dashboard code
+        // } else {
+        //     echo "You are not allowed to view this page";
+        // }
     }
 
     public function loginAction()
@@ -20,7 +37,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         $layout = $this->getLayout();
         // gives layout ie head, header, content, footer which are in Core_Block_Layout
         $layout->getChild('head')->addCss('customer/login.css');
-        $child = $layout->getChild('content'); 
+        $child = $layout->getChild('content');
         $loginForm = $layout->createBlock('customer/account_login');
         $child->addChild('loginForm', $loginForm);
         $layout->toHtml();
@@ -44,7 +61,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             }
 
             if ($count != 0) {
-                Mage::getSingleton('core/session')
+                Mage::getSingleton('core/session')  //returns obj of session file
                     ->set('logged_in_customer_id', $customerId);
                 $this->setRedirect('customer/account/dashboard');
                 // $address = Mage::getBaseUrl('customer/account/dashboard');
@@ -77,26 +94,16 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
         print_r($customer);
     }
 
-    public function forgotpasswordAction()
+    public function forgotPasswordAction()
     {
         //html pg with email option & post as same action
 
         $layout = $this->getLayout();
         $layout->getChild('head')->addCss('customer/forgotpassword.css');
-        $forgotpasswordForm = $layout->createBlock('customer/account_forgotpassword');
-        $layout->getChild('content')->addChild('forgotpassword', $forgotpasswordForm);
+        $forgotPasswordForm = $layout->createBlock('customer/account_forgotpassword');
+        $layout->getChild('content')->addChild('forgotpassword', $forgotPasswordForm);
         $layout->toHtml();
     }
 
 
-    public function dashboardAction()
-    {
-        //show here details about customer
-        $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
-        if ($customerId) {
-            // get customer id from session & load customer object to get other data in our block file show dashboard code
-        } else {
-            echo "You are not allowed to view this page";
-        }
-    }
 }

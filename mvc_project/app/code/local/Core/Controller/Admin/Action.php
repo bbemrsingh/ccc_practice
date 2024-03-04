@@ -4,15 +4,29 @@
 class Core_Controller_Admin_Action extends Core_Controller_Front_Action
 {
     protected $_allowedAction = [];
-    public function init()
+    public function __construct()
     {
-        $this->getLayout()->setTemplate('core/admin.phtml');
+        $this->init();
+        $layout = $this->getLayout();
+        $layout->setTemplate('core/admin.phtml');
+
+        $header = Mage::getBlock('admin/header');
+        $layout->addChild('header', $header);
+
+        // $layout->getChild('head')->addCss('admin/left.css')->addJs('left.js');
+    }
+    public function init()
+    //Restrict access to certain actions in the controller, & to redirect unauthorized users to the login page.
+    {
+        $layout = $this->getLayout()->setTemplate('core/admin.phtml'); // yaha pe admin.phtml ko hamne set karadiya as template for admin
         if (
-            !in_array($this->getRequest()->getActionName(), $this->_allowedAction) &&
-            !Mage::getSingleton('core/session')->get('logged_in_admin_user_id')
+            !in_array($this->getRequest()->getActionName(), $this->_allowedAction) &&  //allowedAction keywords starts from here
+            !Mage::getSingleton('core/session')->get('logged_in_admin_id')
         ) {
             $this->setRedirect('admin/user/login');
         }
+        // $header = $layout->createBlock('admin/header');
+        // $layout->getChild('left')->addChild('header', $header);
         return $this;
     }
 

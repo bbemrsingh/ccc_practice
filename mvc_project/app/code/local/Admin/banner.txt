@@ -30,6 +30,34 @@ product detail pg
 product listing pg 
 
 
+// below sent by OM
+
+
+catalog/category/view?id=1
+//show all the product with category_id=1
+
+catalog/product/view?id=1
+//product details,quantity box & addToCart Button except cost
+
+
+//on submit of addToCart button product_id & quantity 
+sales/quote/add 
+//on Print_r we must get Post Data
+
+Admin 
+
+	Controller - app/code/local/admin/controller/{name}
+	Model - app/code/local/{module}/model/{name}
+	block - app/code/local/{module}/block/admin/{name}
+	view - app/design/frontend/template/{module}/admin/{name}
+
+Front
+
+	Controller - app/code/local/{module}/controller/{name}
+	Model - app/code/local/{module}/model/{name}
+	block - app/code/local/{module}/block/{name}
+	view - app/design/frontend/template/{module}/{name}
+
 
 
 getimageurl

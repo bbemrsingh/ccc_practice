@@ -8,11 +8,13 @@ class Core_Controller_Front
 
     public function init()
     {
-        $request        = Mage::getModel("core/request");
-        $actionName     = $request->getActionName() . "Action";
+        Mage::getSingleton('core/session');
+
+        $request = Mage::getModel("core/request");
+        $actionName = $request->getActionName() . "Action";
         //here getActionName() returns last word of url you can see in browser
         // and here we concatinate Action so all action function work because of this function.
-        $fullclassName  = $request->getFullControllerClass();
+        $fullclassName = $request->getFullControllerClass();
         // echo $fullclassName;
         $pageController = new $fullclassName();
         $pageController->$actionName();

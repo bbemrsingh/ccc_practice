@@ -2,9 +2,6 @@
 
 class Customer_Model_Resource_Account extends Core_Model_Resource_Abstract
 {
-    protected $_tableName = "";
-    protected $_primaryKey = "";
-
     public function init($tableName, $primaryKey)
     {
         $this->_tableName = $tableName;
