@@ -76,4 +76,11 @@ class Mage
         }
         return self::$baseUrl;
     }
+    public static function getImagePath($filePath)
+    {
+        if ($filePath) {
+            return self::$baseUrl . '/media/' . $filePath;
+        }
+
+    }
 }

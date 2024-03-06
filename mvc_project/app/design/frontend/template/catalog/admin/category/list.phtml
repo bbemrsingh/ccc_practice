@@ -1,12 +1,12 @@
 <?php
 echo "<pre>";
-$productCollection = Mage::getModel("catalog/category")->getCollection();
+$categoryCollection = Mage::getModel("catalog/category")->getCollection();
 
 ?>
 
-<div class="container table table-bordered table-hover">
+<div class="table table-bordered table-hover">
     <h1 class="table-heading">Category List</h1>
-    <table>
+    <table class="mt-4 mr-3">
         <thead>
             <tr class="bg-success text-center">
                 <th>SKU</th>
@@ -16,24 +16,24 @@ $productCollection = Mage::getModel("catalog/category")->getCollection();
             </tr>
         </thead>
         <tbody class="text-center">
-            <?php foreach ($productCollection->getData() as $_product): ?>
+            <?php foreach ($categoryCollection->getData() as $_category): ?>
                 <tr>
                     <td>
-                        <?php echo $_product->getSku() ?>
+                        <?php echo $_category->getcategoryId() ?>
                     </td>
                     <td>
-                        <?php echo $_product->getName() ?>
+                        <?php echo $_category->getcategoryName() ?>
                     </td>
                     <td>
-                        <?php echo $_product->getStatus() ?>
+                        <?php echo $_category->getStatus() ?>
                     </td>
                     <td>
                         <a
-                            href="<?php echo $this->getUrl('admin/catalog_category/form?id=' . $_product->getProduct_id()) ?>">
+                            href="<?php echo $this->getUrl('admin/catalog_category/form?id=' . $_category->getcategory_id()) ?>">
                             <input type="button" value="Update" class="btn btn-primary"></button>
                         </a>
                         <a
-                            href="<?php echo $this->getUrl('admin/catalog_category/delete?id=' . $_product->getProduct_id()); ?>">
+                            href="<?php echo $this->getUrl('admin/catalog_category/delete?id=' . $_category->getcategory_id()); ?>">
                             <button value="delete" name="delete" class="btn btn-danger">Delete</button>
                         </a>
                     </td>

@@ -25,10 +25,10 @@ class Core_Block_Layout extends Core_Block_Template
         $footer = $this->createBlock('page/footer');
         $this->addChild('footer', $footer);
 
-        if (Mage::getSingleton('core/session')->get('logged_in_customer_id')) {
-            $customer = Mage::getModel('customer/account')->load(Mage::getSingleton('core/session')->get('logged_in_customer_id'));
-            $header->addData('customer', $customer);
-        }
+        // if (Mage::getSingleton('core/session')->get('logged_in_customer_id')) {
+        //     $customer = Mage::getModel('customer/account')->load(Mage::getSingleton('core/session')->get('logged_in_customer_id'));
+        //     $header->addData('customer', $customer);
+        // }
 
         $messages = $this->createBlock('core/template');
         $messages->setTemplate('core/messages');

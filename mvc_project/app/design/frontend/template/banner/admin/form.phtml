@@ -1,34 +1,44 @@
-<body>
-    <div class="container">
-        <div class="image-container">
-            <!-- Placeholder image -->
-            <img src="" alt="">
-        </div>
-        <div class="form-container">
-            <h2>Banner Form</h2>
-            <form action="process_form.php" method="POST">
-                <div class="form-group">
-                    <label for="banner_image">Banner Image:</label>
-                    <input type="file" id="banner_image" name="banner_image" required>
-                </div>
+<div class="container">
+    <!-- <div class="image-container">
+        Placeholder image
+        <img src="" alt="">
+    </div> -->
+    <div class="form-container">
+        <h2>Banner Form</h2>
+        <form action="<?php echo $this->getUrl('admin/banner/save') ?>" method="post">
+            <?php $data = $this->getBannerForm(); ?>
 
-                <div class="form-group">
-                    <label for="status">Status:</label>
-                    <select id="status" name="status" required>
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
-                    </select>
-                </div>
 
-                <div class="form-group">
-                    <label for="show_on">Show On:</label>
-                    <input type="text" id="show_on" name="show_on" required>
-                </div>
+            <div class="form-group">
+                <input type="hidden" name="banner[banner_id]" value="<?php echo $data->getBannerId(); ?>">
+            </div>
+            <div class="form-group">
+                <label for="banner_image">Banner Image:</label>
+                <input type="file" id="banner_image" name="banner[banner_image]"
+                    value="<?php echo $data->getBannerImage(); ?>" required>
+            </div>
 
-                <div class="form-group">
-                    <button type="submit">Submit</button>
-                </div>
-            </form>
-        </div>
+            <div class="form-group">
+                <label for="status">Status:</label>
+
+                <select id="status" name="banner[status]" required>
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="show_on">Show On</label>
+                <select name="banner[show_on]" id="show_on">
+                    <option value="">Home</option>
+                    <option value="">Cart</option>
+                    <option value="">CheckOut</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
     </div>
-</body>
+</div>

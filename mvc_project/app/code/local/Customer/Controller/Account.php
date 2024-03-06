@@ -1,7 +1,7 @@
 <?php
 class Customer_Controller_Account extends Core_Controller_Front_Action
 {
-    protected $_allowedAction = ['login'];
+    protected $_allowedAction = ['login', 'register', 'forgotPassword'];
 
     public function init()
     {
@@ -15,7 +15,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
     public function dashboardAction()
     {
 
-        //show details about customer
+        //details about customer
         $layout = $this->getLayout();
         $layout->getChild('head')->addCss('customer/dashboard.css');
         $child = $layout->getChild('content');

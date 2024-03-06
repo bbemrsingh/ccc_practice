@@ -36,12 +36,15 @@ class Core_Model_Abstract
         // return new $class;
         return new $this->_resourceClass();
     }
+    /** The function creates a new collection object, sets its resource and model class, selects data,
+     * and return instance of the collection class with the resource and model class set, after
+     * selecting data from the database.*/
     public function getCollection()
     {
         $collection = new $this->_collectionClass();
         $collection->setResource($this->getResource());
         $collection->setModelClass($this->_modelClass);
-        $collection->select();
+        $collection->select(); // this gives table name
         return $collection;
     }
 

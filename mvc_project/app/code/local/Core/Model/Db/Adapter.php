@@ -21,15 +21,17 @@ class Core_Model_Db_Adapter
         }
         return $this->connect;
     }
-    public function fetchAll($query)
-    {
-        $row = [];
-        $result = $this->connect()->query($query);
-        while ($_row = mysqli_fetch_assoc($result)) {
-            $row[] = $_row;
-        }
-        return $row;
-    }
+    /**
+     * These PHP functions fetch rows and all rows from a database query result respectively.
+     * query can be a SELECT
+     * statement to retrieve data from one or more tables based on specified criteria. The query can
+     * include conditions, joins,
+     * 
+     * `fetchRow` returns a single row fetched from the database based on the
+     * provided query. It fetches the row using `mysqli_fetch_assoc` and returns it as an associative
+     * array.
+     */
+
     public function fetchRow($query)
     {
         $row = [];
@@ -37,6 +39,15 @@ class Core_Model_Db_Adapter
         $result = mysqli_query($this->connect, $query);
         while ($_row = mysqli_fetch_assoc($result)) {
             $row = $_row;
+        }
+        return $row;
+    }
+    public function fetchAll($query)
+    {
+        $row = [];
+        $result = $this->connect()->query($query);
+        while ($_row = mysqli_fetch_assoc($result)) {
+            $row[] = $_row;
         }
 
         return $row;
@@ -51,9 +62,6 @@ class Core_Model_Db_Adapter
         } else {
             return false;
         }
-    }
-    public function query($query)
-    {
     }
     public function update($query)
     {
@@ -72,10 +80,56 @@ class Core_Model_Db_Adapter
             return false;
         }
     }
-    public function fetchPairs($query)
-    {
-    }
-    public function fetchOne($query)
-    {
-    }
+
+
+    // public function query($query)
+    // {
+    // }
+    // public function fetchPairs($query)
+    // {
+    // }
+    // public function fetchOne($query)
+    // {
+    // }
+
+
+    // public function fetchAll($query)
+    // {
+    //     $row = [];
+    //     $result = $this->connect->query($query);
+    //     while ($_row = mysqli_fetch_assoc($result)) {
+    //         $row = $_row;
+    //     }
+    //     return $row;
+    // }
+
+    // public function fetchRow($query)
+    // {
+    //     $row = [];
+    //     $result = $this->connect->query($query);
+    //     while ($_row = mysqli_fetch_assoc($result)) {
+    //         $row = $_row;
+    //     }
+    //     return $row;
+    // }
+
+    // public function update($query)
+    // {
+    //     if ($this->connect->query($query)) {
+    //         return mysqli_insert_id($this->connect);
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+    // public function delete($query)
+    // {
+    //     if (mysqli_query($this->connect(), $query)) {
+    //         return mysqli_insert_id($this->connect());
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
 }
+

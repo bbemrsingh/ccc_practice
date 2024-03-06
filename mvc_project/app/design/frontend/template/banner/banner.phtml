@@ -1,0 +1,68 @@
+<?php $bannerCollection = Mage::getModel("banner/banner")->getCollection();//Catalog_Model_Resource_Collection_Product Object 
+
+?>
+
+
+<div class="bg-light">
+    <h3 class="text-center">i-Store</h3>
+    <p class="text-center">We Sell Verified Products</p>
+</div>
+
+<!-- whenever we are creating a row div. all the column div inside it must sum up to 12 always -->
+<div class="row">
+    <div class="col-md-10">
+        <!-- display all the products -->
+        <div class="row">
+            <?php foreach ($bannerCollection->getData() as $_banner): ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="<?php echo Mage::getImagePath('banner/') . $_banner->getBannerImage() ?>"
+                            class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                                the card's content.</p>
+                            <a href="#" class="btn btn-info">Add to Cart</a>
+                            <a href="#" class="btn btn-secondary">View More</a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            <!-- <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                        <a href="#" class="btn btn-info">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary">View More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                            the card's content.</p>
+                        <a href="#" class="btn btn-info">Add to Cart</a>
+                        <a href="#" class="btn btn-secondary">View More</a>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+    </div>
+
+    <div class="col-md-2 bg-secondary">
+        <!-- display sidenav/filters -->
+        <h3>Filters</h3>
+        <div class="navbar-nav me-auto">
+            <li class="nav-item bg-info">
+                <a href="#" class="nav-link"></a>
+        </div>
+    </div>
+</div>

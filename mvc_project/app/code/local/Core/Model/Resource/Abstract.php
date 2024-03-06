@@ -3,6 +3,16 @@ class Core_Model_Resource_Abstract
 {
     protected $_tableName = "";
     protected $_primaryKey = "";
+
+    public function init($tableName, $primaryKey)
+    {
+        $this->_tableName = $tableName;
+        $this->_primaryKey = $primaryKey;
+    }
+    public function getAdapter()
+    {
+        return new Core_Model_Db_Adapter;
+    }
     public function getTableName()
     {
         return $this->_tableName;
@@ -19,10 +29,6 @@ class Core_Model_Resource_Abstract
         $id = $model->getData()[$this->getPrimaryKey()];
         $sql = 'DELETE FROM ' . $this->getTableName() . ' WHERE ' . $this->getPrimaryKey() . ' = ' . $id;
         $this->getAdapter()->delete($sql);
-    }
-    public function getAdapter()
-    {
-        return new Core_Model_Db_Adapter;
     }
 
     public function getPrimaryKey()
@@ -53,7 +59,7 @@ class Core_Model_Resource_Abstract
         }
         $columns = implode(",", $columns);
         $whereCond = implode("AND", $whereCond);
-        $sql =  "UPDATE {$tb} SET {$columns} WHERE {$whereCond}";
+        $sql = "UPDATE {$tb} SET {$columns} WHERE {$whereCond}";
         return $sql;
     }
     public function save(Core_Model_Abstract $object)
@@ -77,19 +83,5 @@ class Core_Model_Resource_Abstract
         }
         // print_r($product);
     }
-
-
-
-    // public function save(Catalog_Model_Product $product)
-    // {
-
-    //     $data = $product->getData();
-    //     if (isset($data[$this->getPrimaryKey()])) {
-    //         unset($data[$this->getPrimaryKey()]);
-    //     }
-    //     $sql = $this->insertSql($this->getTableName(), $data);
-    //     $id = $this->getAdapter()->insert($sql);
-    //     $product->setId($id);
-    // }
 
 }

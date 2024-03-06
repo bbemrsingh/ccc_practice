@@ -15,6 +15,12 @@ class Core_Model_Session
         }
         return false;
     }
+    public function set($key, $value)
+    {
+        // Sets the specified key-value pair in the session. It returns the instance of the current object, allowing method chaining.
+        $_SESSION[$key] = $value;
+        return $this;
+    }
     public function get($key)
     {
         //  Checks if specified key exists in the session. If it does, returns it's value.
@@ -22,12 +28,6 @@ class Core_Model_Session
             return $_SESSION[$key];
         }
         return false;
-    }
-    public function set($key, $value)
-    {
-        // Sets the specified key-value pair in the session. It returns the instance of the current object, allowing method chaining.
-        $_SESSION[$key] = $value;
-        return $this;
     }
     public function remove($key)
     {

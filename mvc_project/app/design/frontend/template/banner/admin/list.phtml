@@ -1,6 +1,6 @@
 <?php
 
-$bannerCollection = Mage::getModel("banner/banner")->getCollection();
+$bannerCollection = Mage::getModel('banner/banner')->getCollection();
 
 ?>
 
@@ -9,20 +9,24 @@ $bannerCollection = Mage::getModel("banner/banner")->getCollection();
     <table>
         <thead>
             <tr class="bg-success text-center">
-                <th>SKU</th>
-                <th>Name</th>
-                <th>Action</th>
-
+                <th>Id</th>
+                <th>Image</th>
+                <th>Status</th>
+                <th>Show On</th>
+                <th>UPDATE</th>
+                <th>DELETE</th>
             </tr>
         </thead>
         <tbody class="text-center">
-            <?php foreach ($productCollection->getData() as $_banner): ?>
+            <?php foreach ($bannerCollection->getData() as $_banner): ?>
                 <tr>
                     <td>
                         <?php echo $_banner->getBannerId() ?>
                     </td>
                     <td>
-                        <?php echo $_banner->getBannerImage() ?>
+                        <img src="<?php echo Mage::getImagePath('banner/') . $_banner->getBannerImage() ?>" width=" 100"
+                            height="90" alt="logo" />
+
                     </td>
 
                     <td>
@@ -32,11 +36,12 @@ $bannerCollection = Mage::getModel("banner/banner")->getCollection();
                         <?php echo $_banner->getShowOn() ?>
                     </td>
                     <td>
-                        <a href="<?php echo $this->getUrl('admin/form/form?id=' . $_banner->getProduct_id()) ?>">
-                            <input type="button" value="Update" class="btn btn-primary"></button>
+                        <a href="<?php echo $this->getUrl('admin/banner/form?id=' . $_banner->getbanner_id()) ?>">
+                            <button name="Update" class="btn btn-primary">Update</button>
                         </a>
-                        <a href="<?php echo $this->getUrl('admin/banner/delete?id=' . $_banner->getProduct_id()); ?>">
-                            <button value="delete" name="delete" class="btn btn-danger">Delete</button>
+                    </td>
+                    <td> <a href="<?php echo $this->getUrl('admin/banner/delete?id=' . $_banner->getbanner_id()); ?>">
+                            <button name="delete" class="btn btn-danger">Delete</button>
                         </a>
                     </td>
                 </tr>

@@ -1,0 +1,27 @@
+<form action="<?php echo $this->getUrl('admin/converter/save') ?>" method="post">
+
+    <?php $tempModel = $this->getConverterForm(); ?>
+    <input type="hidden" name="temp[id]" />
+    <input type="hidden" name="temp[session_id]" />
+    <br>
+    <label>User Name</label>
+    <input type="text" name="temp[user_name]" value="<?php echo $tempModel->getUserName(); ?>"><br>
+
+    <label>Temperature</label>
+    <input type="text" name="temp[temperature]" value="<?php echo $tempModel->getTemperature(); ?>"><br>
+
+    <label>Unit</label>
+    <select name="temp[unit]">
+        <option <?php $data->getUnit() ? "selected" : "" ?> value="C">Celsius</option>
+        <option <?php $data->getUnit() ? "selected" : "" ?> value="F">Fahrenheit</option>
+        <option <?php $data->getUnit() ? "selected" : "" ?> value="K">Kelvin</option>
+    </select>
+
+    <label>Convert</label>
+    <select name="temp[unit]">
+        <option <?php $data->getConverterUnit() ? "selected" : "" ?> value="C">Celsius</option>
+        <option <?php $data->getConverterUnit() ? "selected" : "" ?> value="F">Fahrenheit</option>
+        <option <?php $data->getConverterUnit() ? "selected" : "" ?> value="K">Kelvin</option>
+    </select>
+    <button type="submit">Convert</button>
+</form>

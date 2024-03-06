@@ -15,9 +15,9 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
             $userName = $adminCredentials['admin_email'];
             $password = $adminCredentials['password'];
 
-            // var_dump($username);
-            // var_dump($password);
-
+            // return instance of the collection class with the resource and model class set &
+            // selecting (tablename) data from the database
+            //addfieldtoFilter fun uses table name returned by select fun called in getcollection
             $adminCollection = Mage::getModel('admin/admin')->getCollection()
                 ->addFieldToFilter('admin_email', $userName)
                 ->addFieldToFilter('password', $password);
@@ -31,7 +31,7 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
                 // print_r($adminId); 
             }
 
-            if ($count == 1) {
+            if ($count != 0) {
                 echo "success";
                 Mage::getSingleton('core/session')->set('logged_in_admin_id', $adminId);
                 $this->setRedirect('admin/user/dashboard');
@@ -40,10 +40,12 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
                 $this->setRedirect('admin/user/login');
             }
         } else {
-            $layout = $this->getlayout();
-            $layout->getChild('head')->addCss('admin/login.css');
-            $adminLogin = $layout->createBlock('admin/login');
-            $layout->getChild('content')->addChild('login', $adminLogin);
+            $layout = $this->getLayout();
+            $layout->getChild('head')->addcss('admin/login.css'); //including object of category form
+            $child = $layout->getChild('content');
+
+            $adminlogin = Mage::getBlock('admin/login'); //returning object of admin login form
+            $child->addChild('adminLogin', $adminlogin); //adding login.php into content
             $layout->toHtml();
         }
     }
@@ -51,9 +53,13 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
     public function dashboardAction()
     {
         $layout = $this->getLayout();
+        $layout->getChild('head')->addCss('admin/navbar.css');  //including css file
+
         $child = $layout->getChild('content');
-        $adminDashboard = $layout->createBlock("admin/dashboard");
-        $child->addChild('adminDashboard', $adminDashboard);
+
+        $dashboard = Mage::getBlock('admin/dashboard'); //returning object of catagory form
+
+        $child->addChild('dashboard', $dashboard); //adding dashboard.php
         $layout->toHtml();
     }
 

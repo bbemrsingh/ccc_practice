@@ -9,12 +9,10 @@ class Page_Controller_Index extends Core_Controller_Front_Action
         // $layout->getchild('head')->addJs('page.js');
         // we give head in getchild because addcss function is in head.phtml
 
-        $banner = $layout->createBlock('core/template')
-            ->setTemplate('banner/banner.phtml');
 
 
-        $layout->getchild('content')
-            ->addChild('banner', $banner);
+        $banner = $layout->createBlock('banner/banner');
+        $layout->getchild('content')->addChild('banner', $banner);
         $layout->toHtml();
     }
 }
