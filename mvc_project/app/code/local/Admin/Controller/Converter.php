@@ -13,7 +13,7 @@ class Admin_Controller_Converter extends Core_Controller_Admin_Action
         $layout = $this->getLayout();
         // ->setTemplate('core/2column.html');
 
-        $tempConverter = Mage::getModel("tempconverter/admin_form");
+        $tempConverter = Mage::getModel("tempconverter/converter");
 
         $layout->getChild('content')->addChild('converter', $tempConverter);
         $layout->toHtml();
