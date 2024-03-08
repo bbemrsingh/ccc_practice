@@ -30,9 +30,11 @@
             <div class="form-group">
                 <label for="show_on">Show On</label>
                 <select name="banner[show_on]" id="show_on">
-                    <option value="">Home</option>
-                    <option value="">Cart</option>
-                    <option value="">CheckOut</option>
+                    <?php foreach ($this->showOn as $row): ?>
+                        <option value="<?php echo $row; ?>">
+                            <?php echo $row; ?>
+                        </option>
+                    <?php endforeach; ?>
                 </select>
             </div>
 

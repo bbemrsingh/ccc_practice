@@ -17,4 +17,6 @@ class Banner_Block_Admin_Form extends Core_Block_Template
         return $bannerModel;
 
     }
+    public $showOn = ['Home', 'checkout', 'cart'];
+
 }

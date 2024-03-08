@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   font-family: "Open Sans", sans-serif;
@@ -9,16 +10,19 @@ body {
   margin-bottom: 0px;
   margin-left: 0px;
 }
+
 .ft-section-box {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
 .wrapper-box {
   padding-top: 10px;
   padding-bottom: 10px;
   margin-left: auto;
   margin-right: auto;
 }
+
 .gjs-ft-wrap-normal {
   max-width: 1140px;
 }
@@ -37,6 +41,7 @@ progress {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
 .ftsub_heading {
   text-align: center;
   font-size: 23px;
@@ -52,11 +57,13 @@ progress {
   line-height: 1.4;
   margin-top: 5px;
 }
+
 #i2nx4s {
   background-color: #212121;
   padding-bottom: 16px;
   padding-top: 16px;
 }
+
 .gjs-ft-section {
   padding-top: 10px;
   padding-bottom: 10px;

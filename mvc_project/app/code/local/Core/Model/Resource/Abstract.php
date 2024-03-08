@@ -20,7 +20,7 @@ class Core_Model_Resource_Abstract
 
     public function load($id, $column = null)
     {
-        $sql = "SELECT * FROM {$this->_tableName} WHERE  {$this->_primaryKey} = {$id} LIMIT 1";
+        $sql = "SELECT * FROM {$this->_tableName} WHERE  {$this->_primaryKey} = '{$id}' LIMIT 1";
         // echo $sql;
         return $this->getAdapter()->fetchRow($sql);
     }

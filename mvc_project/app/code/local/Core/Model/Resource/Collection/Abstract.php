@@ -101,4 +101,11 @@ class Core_Model_Resource_Collection_Abstract
         $this->_modelClass = $modelClass;
         return $this;
     }
+
+    public function getFirstItem()
+    {
+        $this->load();
+        return(isset($this->_data[0])) ? $this->_data[0] : null;
+    }
+
 }

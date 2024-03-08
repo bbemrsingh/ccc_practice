@@ -11,7 +11,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
 
     public function initQuote()
     {
-        $quoteId = Mage::getSingleton("core/session")->get("quote_id");
+        $quoteId = Mage::getSingleton("core/session")->get("quote_id", 0);
         $this->load($quoteId);
         if (!$this->getId()) {
             $quote = Mage::getModel("sales/quote")
@@ -21,7 +21,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
             $quoteId = $quote->getId();
             $this->load($quoteId);
         }
-        return $this;
+        return $this; //now $this i.e sales/quote ke object ke pass ab quote_id agai hai .
 
     }
 
@@ -31,7 +31,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
             ->addFieldToFilter('quote_id', $this->getId());
     }
 
-    protected function _beforeSave()
+    public function _beforeSave()
     {
         $grandTotal = 0;
         foreach ($this->getItemCollection()->getData() as $_item) {
@@ -53,6 +53,22 @@ class Sales_Model_Quote extends Core_Model_Abstract
 
         $this->save();
 
+    }
+    public function updateProduct($request)
+    {
+        $this->initQuote();
+        if ($this->getId()) {
+            Mage::getModel("sales/quote_item")->updateItem($this, $request['quote_id'], $request['product_id'], $request['qty'], $request['item_id']);
+        }
+        $this->save();
+    }
+    public function deleteProduct($request)
+    {
+        $this->initQuote();
+        if ($this->getId()) {
+            Mage::getModel("sales/quote_item")->deleteItem($request['quote_id'], $request['item_id']);
+        }
+        $this->save();
     }
 }
 

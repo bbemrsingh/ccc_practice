@@ -1,46 +1,53 @@
-<?php $tempCollector = Mage::getModel("tempconverter/converter")->getCollection(); ?>
+<?php $tempCollector = Mage::getModel("tempconverter/converter")->getCollection();
+?>
 
-
-<table>
-    <thead>
-        <tr>
-            <th>id</th>
-            <th>User Name</th>
-            <th>Temperature</th>
-            <th>unit</th>
-            <th>Convert To</th>
-            <th>Result</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($tempCollector->getData() as $_temp): ?>
-            <tr>
-                <td>
-                    <?php echo $_temp->getID() ?>
-                </td>
-                <td>
-                    <?php echo $_temp->getUserName() ?>
-                </td>
-                <td>
-                    <?php echo $_temp->getTemperature() ?>
-                </td>
-                <td>
-                    <?php echo $_temp->getUnit() ?>
-                </td>
-                <td>
-                    <?php echo $_temp->getConvertUnit() ?>
-                </td>
-                <td>
-                    <?php echo $_temp->getResult() ?>
-                </td>
-                <a href="<?php echo $this->getUrl('admin/converter/form?id=' . $_temp->getid()) ?>">
-                    <input type="button" value="Update" class="btn btn-primary"></button>
-                </a>
-                <a href="<?php echo $this->getUrl('admin/converter/delete?id=' . $_temp->getid()); ?>">
-                    <button value="delete" name="delete" class="btn btn-danger">Delete</button>
-                </a>
+<div class="container">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr class="bg-success text-center">
+                <th>id</th>
+                <th>User Name</th>
+                <th>Temperature</th>
+                <th>unit</th>
+                <th>Convert To</th>
+                <th>Result</th>
+                <th>Delete</th>
+                <th>Update</th>
             </tr>
-        </tbody>
-    <?php endforeach; ?>
-</table>
+        </thead>
+        <tbody>
+            <?php foreach ($tempCollector->getData() as $_temp): ?>
+                <tr class="text-center">
+                    <td>
+                        <?php echo $_temp->getID() ?>
+                    </td>
+                    <td>
+                        <?php echo $_temp->getUserName() ?>
+                    </td>
+                    <td>
+                        <?php echo $_temp->getTemprature() ?>
+                    </td>
+                    <td>
+                        <?php echo $_temp->getUnit() ?>
+                    </td>
+                    <td>
+                        <?php echo $_temp->getConvertUnit() ?>
+                    </td>
+                    <td>
+                        <?php echo $_temp->getResult() ?>
+                    </td>
+                    <th>
+                        <a href="<?php echo $this->getUrl('admin/converter/form?id=' . $_temp->getid()) ?>">
+                            <input type="button" value="Update" class="btn btn-primary"></button>
+                        </a>
+                        </td>
+                    <td>
+                        <a href="<?php echo $this->getUrl('admin/converter/delete?id=' . $_temp->getid()); ?>">
+                            <button value="delete" name="delete" class="btn btn-danger">Delete</button>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        <?php endforeach; ?>
+    </table>
+</div>

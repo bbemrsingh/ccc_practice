@@ -2,7 +2,7 @@
 
 class Admin_Controller_Banner extends Core_Controller_Admin_Action
 {
-    protected $_allowedAction = ['form'];
+    protected $_allowedAction = [];
     public function formAction()
     {
         $layout = $this->getLayout(); // returns core-layout object

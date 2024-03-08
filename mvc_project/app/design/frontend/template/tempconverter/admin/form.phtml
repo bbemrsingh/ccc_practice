@@ -1,6 +1,7 @@
 <form action="<?php echo $this->getUrl('admin/converter/save') ?>" method="post">
 
     <?php $tempModel = $this->getConverterForm(); ?>
+
     <input type="hidden" name="temp[id]" />
     <input type="hidden" name="temp[session_id]" />
     <br>
@@ -8,20 +9,29 @@
     <input type="text" name="temp[user_name]" value="<?php echo $tempModel->getUserName(); ?>"><br>
 
     <label>Temperature</label>
-    <input type="text" name="temp[temperature]" value="<?php echo $tempModel->getTemperature(); ?>"><br>
+    <input type="text" name="temp[temprature]" value="<?php echo $tempModel->getTemperature(); ?>"><br>
 
     <label>Unit</label>
     <select name="temp[unit]">
-        <option <?php $data->getUnit() ? "selected" : "" ?> value="C">Celsius</option>
-        <option <?php $data->getUnit() ? "selected" : "" ?> value="F">Fahrenheit</option>
-        <option <?php $data->getUnit() ? "selected" : "" ?> value="K">Kelvin</option>
+        <?php foreach ($this->TempUnit as $row): ?>
+            <option value="<?php echo $row; ?>">
+                <?php echo $row ?>
+            </option>
+        <?php endforeach; ?>
+
+
     </select>
 
     <label>Convert</label>
-    <select name="temp[unit]">
-        <option <?php $data->getConverterUnit() ? "selected" : "" ?> value="C">Celsius</option>
-        <option <?php $data->getConverterUnit() ? "selected" : "" ?> value="F">Fahrenheit</option>
-        <option <?php $data->getConverterUnit() ? "selected" : "" ?> value="K">Kelvin</option>
+    <select name="temp[convert_unit]">
+        <?php foreach ($this->getTempUnit() as $row): ?>
+            <option value="<?php echo $row ?>">
+                <?php echo $row ?>
+            </option> 
+        <?php endforeach; ?>
+
     </select>
+
+    <input type="hidden" name="temp[result]" value="null"><br>
     <button type="submit">Convert</button>
 </form>

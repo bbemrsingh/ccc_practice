@@ -2,7 +2,7 @@
 // echo "<pre>";
 $productCollection = Mage::getModel("catalog/product")->getCollection();
 // $productCollection->addFieldToFilter('category_id', '1');
-$products = $productCollection->getData(); // for update and delete btn
+// $products = $productCollection->getData(); // for update and delete btn
 
 ?>
 
@@ -11,11 +11,13 @@ $products = $productCollection->getData(); // for update and delete btn
     <table>
         <thead>
             <tr class="bg-success text-center">
+                <th>P ID</th>
                 <th>SKU</th>
                 <th>Name</th>
                 <th>Color</th>
                 <th>Size</th>
                 <th>Description</th>
+                <th>Image Link</th>
                 <th>Price</th>
                 <th>MFR Cost</th>
                 <th>Shipping Cost</th>
@@ -31,6 +33,9 @@ $products = $productCollection->getData(); // for update and delete btn
             <?php foreach ($productCollection->getData() as $_product): ?>
                 <tr>
                     <td>
+                        <?php echo $_product->getProductId() ?>
+                    </td>
+                    <td>
                         <?php echo $_product->getSku() ?>
                     </td>
                     <td>
@@ -44,6 +49,9 @@ $products = $productCollection->getData(); // for update and delete btn
                     </td>
                     <td>
                         <?php echo $_product->getDescription() ?>
+                    </td>
+                    <td>
+                        <?php echo $_product->getImageLink() ?>
                     </td>
                     <td>
                         <?php echo $_product->getPrice() ?>

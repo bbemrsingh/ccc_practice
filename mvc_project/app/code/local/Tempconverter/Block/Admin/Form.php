@@ -1,6 +1,6 @@
 <?php
 
-class Tempconverter_Block_Admin_converter extends Core_Block_Template
+class Tempconverter_Block_Admin_form extends Core_Block_Template
 {
     public function __construct()
     {
@@ -15,4 +15,19 @@ class Tempconverter_Block_Admin_converter extends Core_Block_Template
         }
         return $tempModel;
     }
+
+    public function getTempUnit()
+    {
+        $mapping = [
+            '1' => 'Celsius',
+            '2' => 'Fahrenheit',
+            '3' => 'Kelvin'
+        ];
+        return $mapping;
+    }
+    public $TempUnit = [
+        '1' => 'Celsius',
+        '2' => 'Fahrenheit',
+        '3' => 'Kelvin'
+    ];
 }

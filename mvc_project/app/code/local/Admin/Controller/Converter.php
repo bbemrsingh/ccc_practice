@@ -2,27 +2,25 @@
 
 class Admin_Controller_Converter extends Core_Controller_Admin_Action
 {
-    protected $_allowedAction = ['form'];
-    public function __construct()
-    {
-        $this->getLayout()->setTemplate('core/2column.phtml');
-    }
+    protected $_allowedAction = [];
 
     public function formAction()
     {
+
         $layout = $this->getLayout();
-        // ->setTemplate('core/2column.html');
+        $layout->setTemplate('core/2column.phtml');
+        $layout->getchild('head')->addJs('converter.js');
+        $tempConverter = $layout->createBlock("tempconverter/admin_form");
 
-        $tempConverter = Mage::getModel("tempconverter/converter");
-
-        $layout->getChild('content')->addChild('converter', $tempConverter);
+        $layout->getChild('content')->addChild('temoConverter', $tempConverter);
         $layout->toHtml();
     }
     public function listAction()
     {
-        $layout = $this->getLayout(); //returns Core_Block_Layout
+        $layout = $this->getLayout();
 
         $tempList = $layout->createBlock("tempconverter/admin_list"); //returns list.php file
+
         $layout->getChild("content")->addChild("tempList", $tempList);
         $layout->toHtml();
 
@@ -30,7 +28,7 @@ class Admin_Controller_Converter extends Core_Controller_Admin_Action
     public function deleteAction()
     {
         $id = $this->getRequest()->getParams("id");
-        $temp = Mage::getModel('tempcoverter/converter')->load($id);
+        $temp = Mage::getModel('tempconverter/converter')->load($id);
         $temp->setId($id)->delete();
         header('Location: /internship/mvc_project/admin/converter/list ');
     }
@@ -39,11 +37,12 @@ class Admin_Controller_Converter extends Core_Controller_Admin_Action
     public function saveAction()
     {
         $data = $this->getRequest()->getParams('temp');
-        $temp = Mage::getModel('tempconverter/converter');
-        $temp->setData($data)->save();
+        $data = Mage::getModel('tempconverter/converter')->getTempResult($data);
+
+        // Mage::getSingleton("core/session")->set("user_name", $data['user_name']);
+
+        $temp = Mage::getModel('tempconverter/converter')->setData($data)->save();
         echo '<pre>';
         print_r($temp);
     }
-    /**The saveAction function saves product data from a request and prints the product object.*/
-
 }

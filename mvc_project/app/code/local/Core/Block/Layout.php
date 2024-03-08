@@ -34,13 +34,6 @@ class Core_Block_Layout extends Core_Block_Template
         $messages->setTemplate('core/messages');
         $this->addChild('messages', $messages);
 
-        // $adminHeader = $this->createBlock("admin/header");
-        // $this->addChild('adminHeader', $adminHeader);
-
-        // $left = $this->createBlock('admin/left');
-        // $this->addChild('left', $left);
-
-
 
     }
     public function createBlock($className)

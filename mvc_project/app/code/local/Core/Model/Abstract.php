@@ -102,9 +102,19 @@ class Core_Model_Abstract
     public function removeData($key = null)
     {
     }
+    public function _beforeSave()
+    {
+
+    }
+    public function _afterSave()
+    {
+
+    }
     public function save()
     {
+        $this->_beforeSave();
         $this->getResource()->save($this); //returns catalog_Model_Resource_Product object
+        $this->_afterSave();
         return $this;
     }
     public function update()

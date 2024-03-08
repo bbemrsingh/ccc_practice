@@ -36,8 +36,8 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
         $data = $this->getRequest()->getParams('product');
         $product = Mage::getModel('catalog/product');
         $product->setData($data)->save();
-        echo '<pre>';
-        print_r($product);
+        // print_r($product);
+        header('Location: /internship/mvc_project/admin/catalog_product/list ');
     }
 
 
@@ -54,4 +54,23 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Admin_Action
         $content->addChild("productList", $productList);
         $layout->toHtml();
     }
+    // public function ViewAction()
+    // {
+    //     $id = $this->getRequest()->getParams('id');
+    //     if ($id) {
+    //         $layout = $this->getLayout();
+    //         $layout->getchild('head')->addCss('product/view.css');
+    //         $productView = $layout->createBlock("catalog/admin_product_view");
+    //         $layout->getchild('content')->addChild('productView', $productView);
+    //         $layout->toHtml();
+
+    //         // $productModel = Mage::getSingleton("catalog/product")->getCollection()
+    //         //     ->addFieldToFilter('product_id', $id)
+    //         //     ->getData($id);
+    //         // print_r($productModel);
+    //     } else {
+    //         $this->listAction();
+    //     }
+
+    // }
 }

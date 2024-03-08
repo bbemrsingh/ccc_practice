@@ -3,7 +3,7 @@
 class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action
 {
     //indexAction function here displayes category.phtml file when we type in browser address bar internship/mvc_project/catalog/category
-    protected $_allowedAction = ['list'];
+    protected $_allowedAction = ['view'];
     public function formAction()
     {
         $layout = $this->getLayout();
@@ -43,11 +43,15 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action
         $layout->toHtml();
     }
 
-    public function viewAction()
-    {
-        $id = $this->getRequest()->getParams("id");
-        $category = Mage::getModel('catalog/category');
-        // $category->addFieldToFilter($category_id, $id)->load($id);
-
-    }
+    // public function viewAction()
+    // {
+    //     $layout = $this->getLayout()->setTemplate('core/1column.phtml');
+    //     $layout->getchild('head')
+    //         ->addCss('category/view.css')
+    //         ->addCss('header.css')
+    //         ->addCss('footer.css');
+    //     $categoryView = $layout->createBlock('catalog/admin_category_View'); // we are using same product view file
+    //     $layout->getChild('content')->addChild('categoryView', $categoryView);
+    //     $layout->toHtml();
+    // }
 }

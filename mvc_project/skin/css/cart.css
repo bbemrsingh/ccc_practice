@@ -1,0 +1,97 @@
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Cart items section */
+.cart-items {
+    margin-bottom: 20px;
+}
+
+.item {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.item img {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.item-details {
+    flex-grow: 1;
+}
+
+.item-details h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.item-details p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.item-details input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.remove-btn {
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.remove-btn:hover {
+    background-color: #ff3333;
+}
+
+/* Subtotal and Discount Section */
+.subtotal {
+    margin-bottom: 20px;
+}
+
+.subtotal p {
+    margin: 0;
+    font-size: 18px;
+}
+
+.subtotal input[type="text"] {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.apply-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.apply-btn:hover {
+    background-color: #45a049;
+}
+
+/* Continue Shopping Button */
+.continue-btn {
+    background-color: #008CBA;
+    color: white
+}
