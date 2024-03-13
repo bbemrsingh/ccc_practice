@@ -9,7 +9,6 @@ class Mage
     private static $registry = [];
     private static $_singleTon = [];
     private static $baseDir = 'c:/xampp/htdocs/internship/mvc_project/';
-    //http://localhost/internship/mvc_project/
     private static $baseUrl = 'http://localhost/internship/mvc_project/';
     public static function init()
     {
@@ -79,8 +78,18 @@ class Mage
     public static function getImagePath($filePath)
     {
         if ($filePath) {
-            return self::$baseUrl . '/media/' . $filePath;
+            return self::$baseUrl . 'skin/images/' . $filePath;
         }
+        return self::$baseUrl . 'skin/images/';
+
+
+    }
+    public static function getBannerPath($filePath)
+    {
+        if ($filePath) {
+            return self::$baseUrl . 'media/' . $filePath;
+        }
+        return self::$baseUrl . 'media/';
 
     }
 }

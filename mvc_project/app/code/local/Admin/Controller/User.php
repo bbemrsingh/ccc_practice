@@ -14,7 +14,6 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
 
             $userName = $adminCredentials['admin_email'];
             $password = $adminCredentials['password'];
-
             // return instance of the collection class with the resource and model class set &
             // selecting (tablename) data from the database
             //addfieldtoFilter fun uses table name returned by select fun called in getcollection
@@ -57,7 +56,7 @@ class Admin_Controller_User extends Core_Controller_Admin_Action
 
         $child = $layout->getChild('content');
 
-        $dashboard = Mage::getBlock('admin/dashboard'); //returning object of catagory form
+        $dashboard = Mage::getBlock('admin/dashboard');
 
         $child->addChild('dashboard', $dashboard); //adding dashboard.php
         $layout->toHtml();

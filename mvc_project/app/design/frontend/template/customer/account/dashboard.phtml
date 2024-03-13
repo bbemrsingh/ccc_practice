@@ -1,3 +1,31 @@
-<?php
+<?php $customerDetails = Mage::getModel('customer/account')->getCollection();
+foreach ($customerDetails->getData() as $cd)
+?>
+<div class="container">
+    <div class="row">
+        <?php echo $cd->getCustomerEmail() ?>
+    </div>
+    <div class="row">
 
-header('Location: /internship/mvc_project/');
+        <?php echo $cd->getFirstName() ?>
+    </div>
+    <div class="row">
+
+        <?php echo $cd->getLastName() ?>
+        <div class="col"></div>
+
+    </div>
+    <div class="row">
+        <?php echo $cd->getBillingAddress() ?>
+    </div>
+    <div class="row">
+        <?php echo $cd->getBillingRegion() ?>
+    </div>
+    <div class="row">
+        <?php echo $cd->getBillingPhone() ?>
+    </div>
+
+
+
+</div>
+<?php //endforeach     ?>

@@ -1,28 +1,26 @@
 <?php
 class Customer_Controller_Account extends Core_Controller_Front_Action
 {
-    protected $_allowedAction = ['login', 'register', 'forgotPassword'];
+    protected $_customerAllowedAction = ['login', 'register', 'forgotPassword'];
 
     public function init()
     {
         if (
-            !in_array($this->getRequest()->getActionName(), $this->_allowedAction) &&
+            !in_array($this->getRequest()->getActionName(), $this->_customerAllowedAction) &&
             !Mage::getSingleton('core/session')->get('logged_in_customer_id')
         ) {
             $this->setRedirect('customer/account/login');
         }
     }
+
     public function dashboardAction()
     {
-
-        //details about customer
         $layout = $this->getLayout();
         $layout->getChild('head')->addCss('customer/dashboard.css');
         $child = $layout->getChild('content');
-        $customerList = $layout->createBlock("customer/account_dashboard");
-        $child->addChild('customerList', $customerList);
+        $customerDashboard = $layout->createBlock("customer/account_dashboard");
+        $child->addChild('customerDashboard', $customerDashboard);
         $layout->toHtml();
-
         // $customerId = Mage::getSingleton('core/session')->get('logged_in_customer_id');
         // if ($customerId) {
         //     header('Location: /internship/mvc_project/ ');
@@ -34,18 +32,10 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
 
     public function loginAction()
     {
-        $layout = $this->getLayout();
-        // gives layout ie head, header, content, footer which are in Core_Block_Layout
-        $layout->getChild('head')->addCss('customer/login.css');
-        $child = $layout->getChild('content');
-        $loginForm = $layout->createBlock('customer/account_login');
-        $child->addChild('loginForm', $loginForm);
-        $layout->toHtml();
-
         // below code will run after user clicks submit button
         if ($this->getRequest()->isPost()) {
-            $accountCredentials = $this->getRequest()->getParams('login'); //getParams gets post data from loginform 
-
+            //getParams gets post data from loginform 
+            $accountCredentials = $this->getRequest()->getParams('login');
             $email = $accountCredentials['customer_email'];
             $password = $accountCredentials['password'];
 
@@ -61,21 +51,22 @@ class Customer_Controller_Account extends Core_Controller_Front_Action
             }
 
             if ($count != 0) {
-                Mage::getSingleton('core/session')  //returns obj of session file
-                    ->set('logged_in_customer_id', $customerId);
+                Mage::getSingleton('core/session')->set('logged_in_customer_id', $customerId);
                 $this->setRedirect('customer/account/dashboard');
-                // $address = Mage::getBaseUrl('customer/account/dashboard');
-                // header('location:' . $address);
             } else {
-
                 $this->setRedirect('customer/account/login');
-
             }
+        } else {
 
+            // gives layout ie head, header, content, footer which are in Core_Block_Layout
+            $layout = $this->getLayout();
+            $layout->getChild('head')->addCss('customer/login.css');
+            $child = $layout->getChild('content');
 
-
+            $customerForm = $layout->createBlock('customer/account_login');
+            $child->addChild('customerForm', $customerForm);
+            $layout->toHtml();
         }
-
     }
 
     public function registerAction()

@@ -3,9 +3,9 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
 {
     public function init()
     {
-        $this->_modelClass = 'sales/quote_item';
         $this->_resourceClass = 'Sales_Model_Resource_Quote_Item';
         $this->_collectionClass = 'Sales_Model_Resource_Collection_Quote_Item';
+        $this->_modelClass = 'sales/quote_item';
     }
     public function getProduct()
     {
@@ -40,38 +40,40 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
             ]
         );
         if ($item) {
-            $this->setId($item->getId()); // updating fields of table on same id (agar nahi karenge to new row ki entry ho jayegi table me)
+            $this->setId($item->getId());
+            // updating fields of table on same id (agar nahi karenge to new row ki entry ho jayegi table me)
         }
         $this->save();
         return $this;
     }
-    public function updateItem(Sales_Model_Quote $quote, $productId, $qty)
+    public function updateItem($quoteId, $productId, $qty, $itemId)
     {
         $item = $this->getCollection()
+            ->addFieldToFilter('item_id', $itemId)
+            ->addFieldToFilter('quote_id', $quoteId)
             ->addFieldToFilter('product_id', $productId)
-            ->addFieldToFilter('quote_id', $quote->getId())
-            ->getFirstItem()
-        ;
+            ->getFirstItem();
+
         $this->setData(
             [
-                'quote_id' => $quote->getId(),
+                'quote_id' => $quoteId,
                 'product_id' => $productId,
-                'qty' => $qty,
+                'item_id' => $itemId,
+                'qty' => $qty
             ]
         );
-
         if ($item) {
             $this->setId($item->getId());
         }
-
         $this->save();
+
         return $this;
     }
-    public function deleteItem(Sales_Model_Quote $quote, $productId)
+    public function deleteItem($quoteId, $itemId)
     {
         $item = $this->getCollection()
-            ->addFieldToFilter('product_id', $productId)
-            ->addFieldToFilter('quote_id', $quote->getId())
+            ->addFieldToFilter('item_id', $itemId)
+            ->addFieldToFilter('quote_id', $quoteId)
             ->getFirstItem()
         ;
         // print_r($item);

@@ -13,12 +13,6 @@ class Core_Model_Abstract
     {
         $this->init();
     }
-    public function setResourceClass($resourceClass)
-    {
-    }
-    public function setCollectionClass($collectionClass)
-    {
-    }
 
     public function getId()
     {

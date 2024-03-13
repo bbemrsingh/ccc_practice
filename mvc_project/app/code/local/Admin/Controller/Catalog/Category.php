@@ -3,7 +3,7 @@
 class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action
 {
     //indexAction function here displayes category.phtml file when we type in browser address bar internship/mvc_project/catalog/category
-    protected $_allowedAction = ['view'];
+    protected $_allowedAction = [];
     public function formAction()
     {
         $layout = $this->getLayout();

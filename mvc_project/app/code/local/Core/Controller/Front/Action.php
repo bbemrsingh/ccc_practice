@@ -4,6 +4,7 @@
 object. */
 class Core_Controller_Front_Action
 {
+    protected $_customerAllowedAction = [];
     public function __construct()
     {
         $this->init();
@@ -14,6 +15,12 @@ class Core_Controller_Front_Action
     }
     public function init()
     {
+        if (
+            !in_array($this->getRequest()->getActionName(), $this->_customerAllowedAction) &&  //allowedAction keywords starts from here
+            !Mage::getSingleton('core/session')->get('logged_in_customer_id')
+        ) {
+            $this->setRedirect('customer/Account/login');
+        }
         return $this;
     }
     protected $_layout = null;

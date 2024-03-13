@@ -58,7 +58,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
     {
         $this->initQuote();
         if ($this->getId()) {
-            Mage::getModel("sales/quote_item")->updateItem($this, $request['quote_id'], $request['product_id'], $request['qty'], $request['item_id']);
+            Mage::getModel("sales/quote_item")->updateItem($request['quote_id'], $request['product_id'], $request['qty'], $request['item_id']);
         }
         $this->save();
     }

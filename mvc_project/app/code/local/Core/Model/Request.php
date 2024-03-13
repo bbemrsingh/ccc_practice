@@ -11,14 +11,14 @@ class Core_Model_Request
 		$request = $this->getRequestUri();
 		$uri = array_filter(explode("/", $request));
 		// print_r($uri);
-		$this->_moduleName		= isset($uri[0]) ? $uri[0] : 'page';
-		$this->_controllerName	= isset($uri[1]) ? $uri[1] : 'index';
-		$this->_actionName		= isset($uri[2]) ? $uri[2] : 'index';
+		$this->_moduleName = isset($uri[0]) ? $uri[0] : 'page';
+		$this->_controllerName = isset($uri[1]) ? $uri[1] : 'index';
+		$this->_actionName = isset($uri[2]) ? $uri[2] : 'index';
 	}
 
 	public function getParams($key = '')
 	{
-		return ($key == '')
+		return($key == '')
 			? $_REQUEST
 			: (isset($_REQUEST[$key])
 				? $_REQUEST[$key]
@@ -28,7 +28,7 @@ class Core_Model_Request
 
 	public function getPostData($key = '')
 	{
-		return ($key == '')
+		return($key == '')
 			? $_POST
 			: (isset($_POST[$key])
 				? $_POST[$key]
@@ -38,7 +38,7 @@ class Core_Model_Request
 
 	public function getQueryData($key = '')
 	{
-		return ($key == '')
+		return($key == '')
 			? $_GET
 			: (isset($_GET[$key])
 				? $_GET[$key]
@@ -61,7 +61,7 @@ class Core_Model_Request
 		$uri = str_replace('/internship/mvc_project/', '', $uri);
 
 		if ((strpos($uri, '?')) !== false) {
-			$uri = stristr($uri, '?', True);
+			$uri = stristr($uri, '?', True);//returns part of $uri before ?
 		}
 		return $uri;
 	}
@@ -84,7 +84,7 @@ class Core_Model_Request
 		$strClass = $this->_moduleName . '_Controller_' . $this->_controllerName;
 		$strClass = ucwords($strClass, "_");
 		// echo $strClass;
-		return $strClass; // return ucwords($this->_moduleName."_Controller_".$this->_controllerName, "_");
+		return $strClass; // return ModuleName_Controller_fileName
 
 	}
 }

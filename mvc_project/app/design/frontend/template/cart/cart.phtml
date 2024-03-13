@@ -1,12 +1,10 @@
 <main>
-    <?php $item = $this->getItemList(); ?>
     <section class="cart-items">
-
         <!-- Cart items display here -->
-        <?php foreach ($item->getData() as $_itemList): ?>
+        <?php foreach ($this->getItemList()->getData() as $_itemList): ?>
             <?php foreach ($this->getProductList($_itemList->getProductId())->getData() as $_productList): ?>
                 <div class="item">
-                    <img src="<?php echo Mage::getImagePath("product/") . $_productList->getImageLink() ?>" alt="">
+                    <img src="<?php echo Mage::getImagePath('skin/images') . $_productList->getImageLink() ?>" alt="">
                     <div class="item-details">
                         <h3>
                             <?php echo $_productList->getName() ?>
@@ -21,11 +19,14 @@
                         </a>
                         <form action="<?php echo $this->getUrl('sales/quote/update') ?>" method="post">
                             <button class="order-place" type="submit" name="update">Update</button>
-                            <input type="hidden" name="update_cart[quote_id]" value="<?php echo $item->getQuoteId() ?>" min="0">
-                            <input type="hidden" name="update_cart[item_id]" value="<?php echo $item->getItemId() ?>" min="0">
-                            <input type="hidden" name="update_cart[product_id]" value="<?php echo $product->getProductId() ?>"
+                            <input type="hidden" name="update_cart[quote_id]" value="<?php echo $_itemList->getQuoteId() ?>"
                                 min="0">
-                            <input type="number" name="update_cart[qty]" value="<?php echo $item->getQty() ?>" min="0">
+                            <input type="hidden" name="update_cart[item_id]" value="<?php echo $_itemList->getItemId() ?>"
+                                min="0">
+                            <input type="hidden" name="update_cart[product_id]"
+                                value="<?php echo $_productList->getProductId() ?>">
+                            min="0">
+                            <input type="number" name="update_cart[qty]" value="<?php echo $_itemList->getQty() ?>" min="0">
                         </form>
                     </div>
                 </div>

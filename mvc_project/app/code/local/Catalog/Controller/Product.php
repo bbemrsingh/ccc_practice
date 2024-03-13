@@ -1,7 +1,7 @@
 <?php
 class Catalog_Controller_Product extends Core_Controller_Front_Action
 {
-
+    protected $_customerAllowedAction = ['view'];
     public function ViewAction()
     {
         $id = $this->getRequest()->getParams('id');

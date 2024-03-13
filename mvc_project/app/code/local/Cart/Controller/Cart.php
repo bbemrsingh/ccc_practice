@@ -1,6 +1,7 @@
 <?php
-class Cart_Controller_Cart extends Core_Controller_Front_Action
+class Cart_Controller_Cart extends Core_Controller_front_Action
 {
+    protected $_customerAllowedAction = ['view'];
     public function viewAction()
     {
         $layout = $this->getLayout();

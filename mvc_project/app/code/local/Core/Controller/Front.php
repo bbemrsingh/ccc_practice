@@ -8,9 +8,10 @@ class Core_Controller_Front
 
     public function init()
     {
-        Mage::getSingleton('core/session');
+        Mage::getSingleton('core/session'); //session started
 
-        $request = Mage::getModel("core/request");
+        $request = Mage::getModel("core/request"); //acquired module,controller $ action names
+
         $actionName = $request->getActionName() . "Action";
         //here getActionName() returns last word of url you can see in browser
         // and here we concatinate Action so all action function work because of this function.

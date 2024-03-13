@@ -16,8 +16,8 @@
             <?php foreach ($bannerCollection->getData() as $_banner): ?>
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="<?php echo Mage::getImagePath('banner/') . $_banner->getBannerImage() ?>"
-                            class="card-img-top" alt="...">
+                        <img src="<?php echo Mage::getBannerPath($_banner->getBannerImage()) ?>" class="card-img-top"
+                            alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of

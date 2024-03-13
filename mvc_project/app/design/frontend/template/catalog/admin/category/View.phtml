@@ -1,26 +1,61 @@
 <?php $productCollection = Mage::getModel("catalog/product")->getCollection();
-
+$categoryList = ['Decor', 'Electronics', 'Fashion', 'Beauty', 'Sports & Fitness', 'kitchen & Dining'];
+// $brandList = ['Louis Philippe', 'Van Heusen', 'Biba', 'Allen Solly', 'Park Avenue'];
 ?>
 
 <div class="row justify-content-center">
+    <div class="col-md-2 bg-secondary p-0">
+        <!-- display sidenav/filters -->
+        <ul class="navbar-nav me-auto text-center">
+            <li class="nav-item bg-dark mr-3">
+                <h3 class="text-light">Filters</h3>
+            </li>
+        </ul>
+        <ul class="navbar-nav me-auto text-center">
+            <li class="nav-item bg-info mr-3">
+                <a href="#" class="nav-link text-light">
+                    <h4>Category</h4>
+                </a>
+            </li>
+            <?php foreach ($categoryList as $list): ?>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-light">
+                        <?php echo $list ?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+
+        <!-- <ul class="navbar-nav me-auto text-center mt-4">
+            <li class="nav-item bg-info mr-3">
+                <a href="#" class="nav-link text-light">
+                    <h4>Brands</h4>
+                </a>
+            </li>
+            <?php //foreach ($brandList as $list):          ?>
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-light">
+                        <? //php echo $list          ?>
+                    </a>
+                </li>
+            <?php //endforeach;          ?>
+        </ul> -->
+
+    </div>
     <div class="col-md-10">
         <!-- display all the products -->
         <div class="row">
             <?php foreach ($productCollection->getData() as $_product): ?>
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <a
-                            href="<?php echo $this->getUrl('admin/catalog_product/view/') . '?id=' . $_product->getProductId() ?>">
-                            <img src="<?php echo Mage::getImagePath('product/') . $_product->getImageLink() ?>"
-                                class="card-img-top" alt="...">
+                        <a href="<?php echo $this->getUrl('catalog/product/view/') . '?id=' . $_product->getProductId() ?>">
+                            <img src="<?php echo Mage::getImagePath($_product->getImageLink()) ?>" class="card-img-top"
+                                alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     <?php echo $_product->getName() ?>
                                 </h5>
                         </a>
-                        <p class="card-text">
-                            <?php echo $_product->getDescription() ?>
-                        </p>
                         <label for="qty">Qty</label>
                         <!-- <input type="number" name="qty" id="qty" min="0" value="0"> -->
                         <form action="<?php echo $this->getUrl('sales/quote/add') ?>" method="post">
@@ -33,47 +68,8 @@
                 </div>
             </div>
         <?php endforeach; ?>
+
     </div>
-</div>
-
-<div class="col-md-2 bg-secondary p-0">
-    <!-- display sidenav/filters -->
-    <ul class="navbar-nav me-auto text-center">
-        <li class="nav-item bg-dark mr-3">
-            <h3 class="text-light">Filters</h3>
-        </li>
-    </ul>
-    <ul class="navbar-nav me-auto text-center">
-        <li class="nav-item bg-info mr-3">
-            <a href="#" class="nav-link text-light">
-                <h4>Category</h4>
-            </a>
-        </li>
-        <?php foreach ($categoryList as $list): ?>
-            <li class="nav-item">
-                <a href="#" class="nav-link text-light">
-                    <?php echo $list ?>
-                </a>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-
-    <ul class="navbar-nav me-auto text-center mt-4">
-        <li class="nav-item bg-info mr-3">
-            <a href="#" class="nav-link text-light">
-                <h4>Brands</h4>
-            </a>
-        </li>
-        <?php foreach ($brandList as $list): ?>
-            <li class="nav-item">
-                <a href="#" class="nav-link text-light">
-                    <?php echo $list ?>
-                </a>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-
-
 </div>
 </div>
 </div>

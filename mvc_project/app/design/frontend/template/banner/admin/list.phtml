@@ -24,7 +24,7 @@ $bannerCollection = Mage::getModel('banner/banner')->getCollection();
                         <?php echo $_banner->getBannerId() ?>
                     </td>
                     <td>
-                        <img src="<?php echo Mage::getImagePath('banner/') . $_banner->getBannerImage() ?>" width=" 100"
+                        <img src="<?php echo Mage::getBannerPath('banner/') . $_banner->getBannerImage() ?>" width=" 100"
                             height="90" alt="logo" />
 
                     </td>
